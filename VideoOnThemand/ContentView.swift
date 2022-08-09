@@ -8,9 +8,20 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @StateObject var loginViewModel = LoginViewModel()
+    
+    @StateObject var homeViewModel = HomeViewModel()
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        if(loginViewModel.page == 0){
+            LoginView()
+                .environmentObject(loginViewModel)
+        } else if(loginViewModel.page == 1){
+          HomeView()
+                .environmentObject(loginViewModel)
+        }
+       
     }
 }
 

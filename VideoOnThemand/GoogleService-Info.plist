@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>823576999823-fpnpbi0arsiou9j1up6af0tq2ctmg7d8.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.823576999823-fpnpbi0arsiou9j1up6af0tq2ctmg7d8</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCMkARo82p1scbqK6PaKZvngztL_h7XSWA</string>
+	<key>GCM_SENDER_ID</key>
+	<string>823576999823</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.MicheleManniello.VideoOnThemand</string>
+	<key>PROJECT_ID</key>
+	<string>cloudmessage-d5786</string>
+	<key>STORAGE_BUCKET</key>
+	<string>cloudmessage-d5786.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:823576999823:ios:01637ffa8105fe0b29fdfa</string>
+</dict>
+</plist>
