@@ -15,6 +15,7 @@ class LoginViewModel: ObservableObject{
 // TODO:  Implementare lo APPSTORAGE
     @Published var showError : Bool = false
     @Published var errorMessage : String = ""
+    @Published var user: Utente = Utente()
  
     
     func isValidEmail(_ email: String) -> Bool {
@@ -58,7 +59,10 @@ class LoginViewModel: ObservableObject{
                 return
             }
         }
-   
+        user = Utente(id: "qwasx", nome: "", cognome: "", età: 0, email: email, password: password, cellulare: "22")
+        
+        
+        
     }
     func logOut(){
         let firebaseAuth = Auth.auth()

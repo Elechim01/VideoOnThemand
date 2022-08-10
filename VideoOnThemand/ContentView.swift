@@ -20,6 +20,7 @@ struct ContentView: View {
         } else if(loginViewModel.page == 1){
           HomeView()
                 .environmentObject(loginViewModel)
+                .environmentObject(homeViewModel)
         }
        
     }
