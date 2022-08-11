@@ -27,7 +27,13 @@ struct Utente: Identifiable {
         password = ""
         cellulare = ""
     }
-    init(id: String,nome:String,cognome: String,età: Int,email: String,password: String,cellulare: String){
+    init(id: String,
+         nome:String,
+         cognome: String,
+         età: Int,
+         email: String,
+         password: String,
+         cellulare: String){
         
         self.id = id
         self.nome = nome

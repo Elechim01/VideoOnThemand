@@ -18,4 +18,27 @@ struct Film: Identifiable {
     var url: String
     var thmbnail: Image
     
+    
+    init(){
+        id = ""
+        idUtente = ""
+        nome = ""
+        url = ""
+        thmbnail = Image("backgroundImage")
+    }
+    
+    
+    init(id : String,
+         idUtente: String,
+         nome: String,
+         url: String,
+         thmbnail: Image){
+        self.id = id
+        self.idUtente = idUtente
+        self.nome = nome
+        self.url = url
+        self.thmbnail = thmbnail
+        
+    }
+    
 }

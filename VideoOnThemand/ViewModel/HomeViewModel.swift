@@ -9,6 +9,7 @@ import UIKit
 import SwiftUI
 import Firebase
 import FirebaseFirestore
+import AVKit
 
 class HomeViewModel: ObservableObject{
     
@@ -42,9 +43,25 @@ class HomeViewModel: ObservableObject{
                     self.films.append(Film(id: id, idUtente: idUtente, nome: nomefile, url: url, thmbnail: thumbanil))
                 }
             }
+                print(self.films)
                 self.films =  self.films.sorted(by:{ $0.nome.compare($1.nome,options: .caseInsensitive) == .orderedAscending })
         }
 
+    }
+    
+    func createMetadata(title: String) -> [AVMetadataItem]{
+        let mapping: [AVMetadataIdentifier: Any] = [
+            .iTunesMetadataTrackSubTitle : title,
+        ]
+        return mapping.compactMap{createMetadataItem(for: $0, value: $1)}
+    }
+    
+   private func createMetadataItem(for identifier: AVMetadataIdentifier,value: Any) -> AVMetadataItem {
+        let item = AVMutableMetadataItem()
+        item.identifier = identifier
+        item.value = value as? NSCopying & NSObjectProtocol
+        item.extendedLanguageTag = "und"
+        return item.copy() as! AVMetadataItem
     }
     
 }

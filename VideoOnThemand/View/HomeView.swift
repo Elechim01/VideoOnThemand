@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import AVKit
+
 
 struct HomeView: View {
     @State var showAlert: Bool = false
@@ -15,7 +17,7 @@ struct HomeView: View {
     @FocusState private var usernameFieldIsFocused: Bool
     
     var body: some View {
-        NavigationView {
+        NavigationView{
             ZStack {
                 if(page == 0){
                     Color.green.opacity(0.7).ignoresSafeArea()
@@ -39,16 +41,14 @@ struct HomeView: View {
                         
                         Spacer()
                         Spacer()
-                      
+                        
                         Text("I tuoi video:")
                             .font(.headline)
                         ScrollView(.horizontal) {
                                 HStack {
                                     ForEach($homeviewModel.films){ $film in
-                                        ZStack {
                                             FilmThumbnailView(film: $film)
-                                        }
-                                        .focusable()
+                                            .environmentObject(homeviewModel)
                                     }
                                 }
                         }
@@ -59,6 +59,7 @@ struct HomeView: View {
                     Spacer()
                 }
             }
+        }
             .onAppear(perform: {
                 homeviewModel.recuperoFilm(user: loginViewModel.user)
             })
@@ -78,8 +79,10 @@ struct HomeView: View {
                     
                 }
             }
-        }
+        
     }
+    
+   
 }
 
 struct HomeView_Previews: PreviewProvider {
@@ -90,26 +93,3 @@ struct HomeView_Previews: PreviewProvider {
     }
 }
 
-struct FilmThumbnailView: View {
-    @Environment(\.isFocused) var isFocused
-    @Binding var film : Film
-    var body: some View {
-        VStack {
-            NavigationLink {
-                Text("")
-            } label: {
-                film.thmbnail
-                    .resizable()
-                    .frame(width: 200, height: 200)
-                
-            }
-            .buttonStyle(CardButtonStyle())
-            if(isFocused){
-                Text(film.nome)
-                    .font(.headline)
-                    .padding()
-            }
-            
-        }
-    }
-}

@@ -12,7 +12,6 @@ import Firebase
 class LoginViewModel: ObservableObject{
  
     @AppStorage("Pagina") var page : Int = 0
-// TODO:  Implementare lo APPSTORAGE
     @Published var showError : Bool = false
     @Published var errorMessage : String = ""
     @Published var user: Utente = Utente()
