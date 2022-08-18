@@ -75,7 +75,7 @@ struct LoginView: View {
             Spacer()
 
         }
-        .background(Color.blue.opacity(0.8).ignoresSafeArea())
+        .background(Color("Blue").ignoresSafeArea())
         .alert(loginViewModel.errorMessage, isPresented: $loginViewModel.showError, actions: {
             Button(action: {loginViewModel.showError = false}, label: {Text("OK")})
         })

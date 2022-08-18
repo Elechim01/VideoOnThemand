@@ -20,7 +20,7 @@ struct HomeView: View {
         NavigationView{
             ZStack {
                 if(page == 0){
-                    Color.green.opacity(0.7).ignoresSafeArea()
+                    Color("Green").ignoresSafeArea()
                 }else{
                     Color.gray.opacity(0.5).ignoresSafeArea()
                 }
@@ -45,7 +45,7 @@ struct HomeView: View {
                         Text("I tuoi video:")
                             .font(.headline)
                         ScrollView(.horizontal) {
-                                HStack {
+                            HStack(alignment:.top) {
                                     ForEach($homeviewModel.films){ $film in
                                             FilmThumbnailView(film: $film)
                                             .environmentObject(homeviewModel)

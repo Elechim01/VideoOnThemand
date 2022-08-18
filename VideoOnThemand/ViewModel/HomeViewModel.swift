@@ -38,7 +38,7 @@ class HomeViewModel: ObservableObject{
                     let idUtente: String = data["idUtente"] as? String ?? ""
                     let nomefile = data["nome"] as? String ?? ""
                     let url :String = data["url"] as? String ?? ""
-                    let thumbanil : Image = data["thumbnail"] as? Image ?? Image("backgroundImage")
+                    let thumbanil : String = data["thumbnail"] as? String ?? ""
 
                     self.films.append(Film(id: id, idUtente: idUtente, nome: nomefile, url: url, thmbnail: thumbanil))
                 }

@@ -20,19 +20,38 @@ struct FilmThumbnailView: View {
             
             NavigationLink(destination: VideoPlayerView(film: film)
                 .environmentObject(homeviewModel)) {
-                    
-                    film.thmbnail
-                        .resizable()
+                    if(film.thmbnail.isEmpty){
+                        Image("backgroundImage")
+                            .resizable()
+                            .frame(width: 200, height: 200)
+                            .onLongPressGesture {
+                                selection = film.id
+                            }
+                        
+                    }else{
+                        AsyncImage(url: URL(string: film.thmbnail) ?? URL(string: "")) { image  in
+                            image
+                                .resizable()
+                                
+                                
+                        } placeholder: {
+                           
+                        }
                         .frame(width: 200, height: 200)
                         .onLongPressGesture {
                             selection = film.id
                         }
+                    }
+                  
+
+                   
+                       
                 }
                 .buttonStyle(CardButtonStyle())
             
             Text(film.nome)
                 .frame(width: 200)
-                .font(.headline)
+                .font(.caption)
                 .padding()
         }
         

@@ -16,7 +16,7 @@ struct Film: Identifiable {
     var idUtente: String
     var nome: String
     var url: String
-    var thmbnail: Image
+    var thmbnail: String
     
     
     init(){
@@ -24,7 +24,7 @@ struct Film: Identifiable {
         idUtente = ""
         nome = ""
         url = ""
-        thmbnail = Image("backgroundImage")
+        thmbnail =  ""
     }
     
     
@@ -32,7 +32,7 @@ struct Film: Identifiable {
          idUtente: String,
          nome: String,
          url: String,
-         thmbnail: Image){
+         thmbnail: String){
         self.id = id
         self.idUtente = idUtente
         self.nome = nome

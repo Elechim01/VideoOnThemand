@@ -58,6 +58,7 @@ class LoginViewModel: ObservableObject{
                 return
             }
         }
+//        ricavare l'utente 
         user = Utente(id: "qwasx", nome: "", cognome: "", età: 0, email: email, password: password, cellulare: "22")
         
         
