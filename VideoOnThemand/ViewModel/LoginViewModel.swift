@@ -14,32 +14,18 @@ class LoginViewModel: ObservableObject{
     @AppStorage("Pagina") var page : Int = 0
     @Published var showError : Bool = false
     @Published var errorMessage : String = ""
-    @Published var user: Utente = Utente()
  
+    //    Memorizzo la password e l'email
+    @AppStorage("Password") var password = ""
+    @AppStorage("Email") var email = ""
+    @AppStorage("IDUser") var idUser = ""
     
-    func isValidEmail(_ email: String) -> Bool {
-        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
-
-        let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
-        return emailPred.evaluate(with: email)
-    }
-    
-    func isValidPassword(testStr:String?) -> Bool {
-        guard testStr != nil else { return false }
-
-        // almeno una maiuscola,
-        // almeno una cifra
-        // almeno una minuscola
-        // 8 caratteri in totale
-        
-        let passwordTest = NSPredicate(format: "SELF MATCHES %@", "(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{8,}")
-        return passwordTest.evaluate(with: testStr)
-    }
+   
     
 //    Page: 0 -> Login, 1 -> Home
     
 //     Funzioni di login e logout 
-    func login(email: String, password: String){
+    func login(email: String, password: String,completition: @escaping (String)->()){
         if(!Extensions.isConnectedToInternet()){
             errorMessage = "Impossibile effettuare il login in assenza di connessione internet"
             return
@@ -50,24 +36,27 @@ class LoginViewModel: ObservableObject{
                 print(err.localizedDescription)
                 self.errorMessage = err.localizedDescription
                 self.showError = true
+                completition("")
                 return
             }else{
                 guard let authResult = authResult else { return }
                 print(authResult.user.uid)
-                self.page = 1
+                self.password = password
+                self.email = email
+                self.idUser = authResult.user.uid
+               completition(authResult.user.uid)
                 return
             }
         }
-//        ricavare l'utente 
-        user = Utente(id: "qwasx", nome: "", cognome: "", età: 0, email: email, password: password, cellulare: "22")
-        
-        
-        
     }
+    
     func logOut(){
         let firebaseAuth = Auth.auth()
         do {
             try firebaseAuth.signOut()
+            self.email = ""
+            self.password = ""
+            self.idUser = ""
             page = 0
         } catch let singoutError as NSError {
             print("Error %@",singoutError)

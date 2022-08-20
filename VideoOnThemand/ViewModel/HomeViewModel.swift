@@ -8,6 +8,7 @@
 import UIKit
 import SwiftUI
 import Firebase
+import FirebaseStorage
 import FirebaseFirestore
 import AVKit
 
@@ -15,19 +16,33 @@ class HomeViewModel: ObservableObject{
     
 //     Recupero film e altro
     @Published var films : [Film] = []
-    @Published var alertfirebase: Bool = false
-    @Published var errorMessage : String = ""
+  
+    @Published var localUser : Utente = Utente()
+//    Memorizzo la password, l'email e l'id
+    @AppStorage("Password") var password = ""
+    @AppStorage("Email") var email = ""
+    @AppStorage("IDUser") var idUser = ""
+
+//    MARK: Alert
+    @Published var showAlert: Bool = false
+    @Published var alertMessage : String = ""
     
+    let firestore : Firestore
+    let firebaseStorage: Storage
     
-    func recuperoFilm(user: Utente){
-        let db = Firestore.firestore()
+    init(){
+        firestore = Firestore.firestore()
+        firebaseStorage = Storage.storage()
+    }
+    
+    func recuperoFilm(endidng:@escaping ()->()){
 //        MARK: For test
-//        db.collection("Film").whereField("idUtente", isEqualTo: user.id).addSnapshotListener {
-            db.collection("Film").addSnapshotListener {
+        firestore.collection("Film").whereField("idUtente", isEqualTo: localUser.id).addSnapshotListener {
             querySnapshot, error in
             if let erro = error{
-                self.errorMessage = erro.localizedDescription
-                self.alertfirebase.toggle()
+                self.alertMessage = erro.localizedDescription
+                self.showAlert.toggle()
+                endidng()
                 return
             }
             else{
@@ -45,9 +60,45 @@ class HomeViewModel: ObservableObject{
             }
                 print(self.films)
                 self.films =  self.films.sorted(by:{ $0.nome.compare($1.nome,options: .caseInsensitive) == .orderedAscending })
+            endidng()
         }
+        
 
     }
+    
+    func recuperoUtente(email: String, password:String,id: String,ending: (()->())?){
+        
+        firestore.collection("Utenti").whereField("email", isEqualTo: email).whereField("password",isEqualTo: password).getDocuments { querySnapshot, err  in
+            if let err = err {
+                self.alertMessage = err.localizedDescription
+                self.showAlert.toggle()
+               ending?()
+                
+            }else{
+                if(querySnapshot!.documents.count > 1){
+                    self.alertMessage = "Errore nel DB presente più utenti"
+                    self.showAlert.toggle()
+                    ending?()
+                }else{
+                    if(querySnapshot!.documents.first == nil){
+                        return
+                    }
+                    let data = querySnapshot!.documents.first!.data()
+                    let nome : String = data["nome"] as? String ?? ""
+                    let cognome: String = data["cognome"] as? String ?? ""
+                    let eta: Int = data["eta"] as? Int ?? 0
+                    let email: String = data["email"] as? String ?? ""
+                    let password: String = data["password"] as? String ?? ""
+                    let cellulare: String = data["cellulare"] as? String ?? ""
+                    self.localUser = Utente(id: id, nome: nome, cognome: cognome, età: eta, email: email, password: password, cellulare: cellulare)
+//                    per la pagina
+                    ending?()
+                }
+                print(self.localUser)
+            }
+        }
+    }
+    
     
     func createMetadata(title: String) -> [AVMetadataItem]{
         let mapping: [AVMetadataIdentifier: Any] = [

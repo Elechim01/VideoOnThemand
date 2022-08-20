@@ -15,6 +15,7 @@ struct HomeView: View {
     @EnvironmentObject var loginViewModel: LoginViewModel
     @EnvironmentObject var homeviewModel: HomeViewModel
     @FocusState private var usernameFieldIsFocused: Bool
+    @State var showProgressView: Bool = false
     
     var body: some View {
         NavigationView{
@@ -42,15 +43,40 @@ struct HomeView: View {
                         Spacer()
                         Spacer()
                         
+                        if(showProgressView){
+                            HStack {
+                                Spacer()
+                              
+                            ProgressView()
+                                    .shadow(color: Color(red: 0, green: 0, blue: 0.6),
+                                                        radius: 4.0, x: 1.0, y: 2.0)
+                              
+                                Spacer()
+                            }
+                        }else{
                         Text("I tuoi video:")
                             .font(.headline)
-                        ScrollView(.horizontal) {
-                            HStack(alignment:.top) {
-                                    ForEach($homeviewModel.films){ $film in
-                                            FilmThumbnailView(film: $film)
-                                            .environmentObject(homeviewModel)
+                            
+                           
+                           
+                            HStack(alignment: .center) {
+                                someSpace()
+                                
+                                ScrollView(.horizontal) {
+                                        HStack(spacing: 30) {
+                                           
+                                                ForEach($homeviewModel.films){ $film in
+                                                        FilmThumbnailView(film: $film)
+                                                        .environmentObject(homeviewModel)
+                                                        .frame(maxWidth: .infinity)
+                                                }
+                                            
+                                            }
+                                        
                                     }
-                                }
+                                .frame(alignment: .center)
+                            }
+                            
                         }
                     }else{
                         SettingsView(showAlert: $showAlert)
@@ -58,14 +84,23 @@ struct HomeView: View {
                     
                     Spacer()
                 }
+                Spacer()
             }
         }
-            .onAppear(perform: {
-                homeviewModel.recuperoFilm(user: loginViewModel.user)
-            })
-            .alert(homeviewModel.errorMessage, isPresented: $homeviewModel.alertfirebase, actions: {
+            .onAppear{
+                if homeviewModel.localUser.isEmply{
+                    homeviewModel.recuperoUtente(email: homeviewModel.email, password: homeviewModel.password, id: homeviewModel.idUser) {
+                        self.showProgressView = true
+                        homeviewModel.recuperoFilm(endidng: {
+                            self.showProgressView = false
+                        })
+                    }
+                }
+               
+            }
+            .alert(homeviewModel.alertMessage, isPresented: $homeviewModel.showAlert, actions: {
                 Button("OK",role: .cancel){
-                    homeviewModel.alertfirebase.toggle()
+                    homeviewModel.showAlert.toggle()
                 }
             })
             .alert("Sei Sicuro di voler effettuare il Logout?", isPresented: $showAlert) {
@@ -80,6 +115,20 @@ struct HomeView: View {
                 }
             }
         
+    }
+    @ViewBuilder
+    func someSpace()->some View{
+        if(homeviewModel.films.count == 1){
+            ForEach(1...10,id:\.self) {_ in
+                Spacer()
+            }
+        }
+        if(homeviewModel.films.count > 1 && homeviewModel.films.count == 4){
+            ForEach(1...5,id:\.self) {_ in
+                Spacer()
+            }
+        }
+       
     }
     
    

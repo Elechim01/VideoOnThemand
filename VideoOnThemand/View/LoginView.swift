@@ -11,13 +11,15 @@ struct LoginView: View {
     
     @State var email: String = ""
     @State var password: String = ""
+    @EnvironmentObject var loginViewModel : LoginViewModel
+    @EnvironmentObject var homeViewModel : HomeViewModel
     
     var getCheck: Bool{
         if(email.isEmpty){
             loginViewModel.errorMessage = "Il campo email è vuoto"
             return false
         }
-        if(!loginViewModel.isValidEmail(email)){
+        if(!Extensions.isValidEmail(email)){
             loginViewModel.errorMessage = "l'email non è valida"
             return false
         }
@@ -26,7 +28,7 @@ struct LoginView: View {
             return false
         }
         
-        if(!loginViewModel.isValidPassword(testStr: password)){
+        if(!Extensions.isValidPassword(testStr: password)){
             loginViewModel.errorMessage = "la password non è valida, deve comprendere: Almeno una maiuscola, Almeno un numero, Almeno una minuscola, 8 caratteri in totale"
             return false
         }
@@ -35,7 +37,7 @@ struct LoginView: View {
     }
     
     
-    @EnvironmentObject var loginViewModel : LoginViewModel
+    
     
     
     var body: some View {
@@ -61,7 +63,17 @@ struct LoginView: View {
             Button {
                 if(getCheck){
 //                    Login
-                    loginViewModel.login(email: email, password: password)
+                    loginViewModel.login(email: email, password: password, completition: {id in
+                        if(!id.isEmpty){
+                            
+                            //Recupero utente
+                            self.homeViewModel.recuperoUtente(email: email, password: password, id: id) {
+                                if(!homeViewModel.showAlert){
+                                    loginViewModel.page = 1
+                                }
+                            }
+                        }
+                    })
                 }else{
                     loginViewModel.showError = true
                 }

@@ -18,6 +18,14 @@ struct Utente: Identifiable {
     var password: String
     var cellulare: String
     
+    var isEmply: Bool{
+        if(id == "" && nome == "" && cogome == "" && età == 0 && email == "" && password == "" && cellulare == ""){
+            return true
+        }else{
+            return false
+        }
+    }
+    
     init() {
         id = ""
         nome = ""
