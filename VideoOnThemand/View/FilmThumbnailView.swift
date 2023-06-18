@@ -15,12 +15,10 @@ struct FilmThumbnailView: View {
     @FocusState var focusf : Bool
     
     var body: some View {
-        
         VStack{
-            
             NavigationLink(destination: VideoPlayerView(film: film)
                 .environmentObject(homeviewModel)) {
-                    if(film.thmbnail.isEmpty){
+                    if(film.thumbnail.isEmpty){
                         Image("backgroundImage")
                             .resizable()
                             .frame(width: 200, height: 200)
@@ -29,23 +27,17 @@ struct FilmThumbnailView: View {
                             }
                         
                     }else{
-                        AsyncImage(url: URL(string: film.thmbnail) ?? URL(string: "")) { image  in
+                        AsyncImage(url: URL(string: film.thumbnail) ?? URL(string: "")) { image  in
                             image
                                 .resizable()
-                                
-                                
                         } placeholder: {
-                           
+                            
                         }
                         .frame(width: 200, height: 200)
                         .onLongPressGesture {
                             selection = film.id
                         }
                     }
-                  
-
-                   
-                       
                 }
                 .buttonStyle(CardButtonStyle())
             
@@ -60,8 +52,7 @@ struct FilmThumbnailView: View {
 
 struct FilmThumbnail_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
-            .environmentObject(LoginViewModel())
+        FilmThumbnailView(film: .constant(Film()))
             .environmentObject(HomeViewModel())
     }
 }

@@ -33,6 +33,37 @@ class Extensions{
         let passwordTest = NSPredicate(format: "SELF MATCHES %@", "(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{8,}")
         return passwordTest.evaluate(with: testStr)
     }
-  
-   
 }
+
+extension EnvironmentValues {
+    var isPreview: Bool {
+        #if DEBUG
+        return ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1"
+//        || true
+        #else
+        return false
+        #endif
+    }
+}
+
+extension View {
+    func snapshot() -> UIImage {
+        let controller = UIHostingController(rootView: self)
+        let view = controller.view
+        let size = controller.sizeThatFits(in: UIScreen.main.bounds.size)
+        view?.bounds = CGRect(origin: .zero, size: size)
+        view?.backgroundColor = .clear
+        
+        let renderer = UIGraphicsImageRenderer(size: size)
+        return renderer.image { _ in
+            view?.drawHierarchy(in: view?.bounds ?? CGRect.zero, afterScreenUpdates: true)
+        }
+    }
+}
+
+extension String {
+  static func twoDecimal(number: Double) -> String {
+        String(format: "%.2fMB", number)
+    }
+}
+

@@ -10,6 +10,9 @@ import AVKit
 
 
 struct HomeView: View {
+    
+    @Environment(\.isPreview) var isPreviews
+    
     @State var showAlert: Bool = false
     @State private var page = 0
     @EnvironmentObject var loginViewModel: LoginViewModel
@@ -21,7 +24,8 @@ struct HomeView: View {
         NavigationView{
             ZStack {
                 if(page == 0){
-                    Color("Green").ignoresSafeArea()
+                    Color("Green")
+                        .ignoresSafeArea()
                 }else{
                     Color.gray.opacity(0.5).ignoresSafeArea()
                 }
@@ -50,53 +54,60 @@ struct HomeView: View {
                             ProgressView()
                                     .shadow(color: Color(red: 0, green: 0, blue: 0.6),
                                                         radius: 4.0, x: 1.0, y: 2.0)
-                              
                                 Spacer()
                             }
                         }else{
                         Text("I tuoi video:")
                             .font(.headline)
-                            
-                           
-                           
-                            HStack(alignment: .center) {
-                                someSpace()
-                                
-                                ScrollView(.horizontal) {
-                                        HStack(spacing: 30) {
-                                           
-                                                ForEach($homeviewModel.films){ $film in
-                                                        FilmThumbnailView(film: $film)
-                                                        .environmentObject(homeviewModel)
-                                                        .frame(maxWidth: .infinity)
-                                                }
-                                            
-                                            }
-                                        
-                                    }
-                                .frame(alignment: .center)
+                            .foregroundColor(.black)
+                            if !homeviewModel.showGrid {
+                                horizontalLayout()
+                            }else {
+                                girdLayout()
                             }
-                            
                         }
-                    }else{
-                        SettingsView(showAlert: $showAlert)
                     }
-                    
+                    else {
+                        SettingsView(showAlert: $showAlert)
+                        .environmentObject(homeviewModel)
+                    }
                     Spacer()
                 }
                 Spacer()
             }
         }
             .onAppear{
-                if homeviewModel.localUser.isEmply{
-                    homeviewModel.recuperoUtente(email: homeviewModel.email, password: homeviewModel.password, id: homeviewModel.idUser) {
+                UIApplication.shared.windows.first?.snapshotView(afterScreenUpdates: true)
+                if isPreviews {
+                    homeviewModel.films = mockFilms
+                    loginViewModel.idUser = mockUtente.id
+                    
+                }else {
+                    if homeviewModel.localUser.isEmply{
+                        Task {
+                            homeviewModel.recuperoUtente(email: homeviewModel.email, password: homeviewModel.password, id: homeviewModel.idUser) {
+                                DispatchQueue.main.async {
+                                    self.showProgressView = true
+                                }
+                                homeviewModel.recuperoFilm(endidng: {
+                                    DispatchQueue.main.async {
+                                        self.showProgressView = false
+                                    }
+                                })
+                            }
+                        }
+                    } else{
                         self.showProgressView = true
-                        homeviewModel.recuperoFilm(endidng: {
-                            self.showProgressView = false
-                        })
+                        Task {
+                            homeviewModel.recuperoFilm(endidng: {
+                                DispatchQueue.main.async {
+                                    self.showProgressView = false
+                                }
+                               
+                            })
+                        }
                     }
                 }
-               
             }
             .alert(homeviewModel.alertMessage, isPresented: $homeviewModel.showAlert, actions: {
                 Button("OK",role: .cancel){
@@ -109,15 +120,18 @@ struct HomeView: View {
                 }
                 
                 Button("Conferma",role: .destructive){
+                    homeviewModel.stream?.remove()
                     loginViewModel.logOut()
                     showAlert.toggle()
+//                    UIApplication.shared.windows.first?.snapshotView(afterScreenUpdates: true)
                     
                 }
             }
         
     }
+    
     @ViewBuilder
-    func someSpace()->some View{
+    private func someSpace() -> some View{
         if(homeviewModel.films.count == 1){
             ForEach(1...10,id:\.self) {_ in
                 Spacer()
@@ -130,9 +144,44 @@ struct HomeView: View {
         }
        
     }
-    
    
+    @ViewBuilder
+    private func horizontalLayout() -> some View {
+        HStack(alignment: .center) {
+            someSpace()
+            ScrollView(.horizontal) {
+                    HStack(spacing: 30) {
+                       
+                            ForEach($homeviewModel.films){ $film in
+                                    FilmThumbnailView(film: $film)
+                                    .environmentObject(homeviewModel)
+                                    .frame(maxWidth: .infinity)
+                            }
+                        }
+                    
+                }
+            .frame(alignment: .center)
+        }
+    }
+    
+    @ViewBuilder
+    private func girdLayout() -> some View {
+        let columns = Array(repeating: GridItem(.flexible()), count: 5)
+        
+        ScrollView {
+            LazyVGrid(columns: columns,spacing: 20) {
+                ForEach($homeviewModel.films){ $film in
+                        FilmThumbnailView(film: $film)
+                        .environmentObject(homeviewModel)
+                        .frame(maxWidth: .infinity)
+                }
+            }
+            .padding(.horizontal)
+        }
+    }
 }
+
+
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {

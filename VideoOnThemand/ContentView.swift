@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UIKit
 
 struct ContentView: View {
     
@@ -13,18 +14,24 @@ struct ContentView: View {
     
     @StateObject var homeViewModel = HomeViewModel()
     
+    
     var body: some View {
-        if(loginViewModel.page == 0){
+        
+        
+        if(loginViewModel.localPage == .Login){
             LoginView()
                 .environmentObject(loginViewModel)
                 .environmentObject(homeViewModel)
-        } else if(loginViewModel.page == 1){
-          HomeView()
+            
+        } else if(loginViewModel.localPage == .Home){
+            HomeView()
                 .environmentObject(loginViewModel)
                 .environmentObject(homeViewModel)
+            
         }
-       
+        
     }
+    
 }
 
 struct ContentView_Previews: PreviewProvider {
@@ -32,3 +39,5 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
+
+

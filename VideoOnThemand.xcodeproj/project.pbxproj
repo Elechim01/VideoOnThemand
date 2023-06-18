@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C4640A5F29BD541C008684A1 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4640A5E29BD541B008684A1 /* Enums.swift */; };
 		C4C7A78B28A2A08B001CB803 /* VideoOnThemandApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C7A78A28A2A08B001CB803 /* VideoOnThemandApp.swift */; };
 		C4C7A78D28A2A08B001CB803 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C7A78C28A2A08B001CB803 /* ContentView.swift */; };
 		C4C7A78F28A2A08D001CB803 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4C7A78E28A2A08D001CB803 /* Assets.xcassets */; };
@@ -31,9 +32,11 @@
 		C4C7A7C028A50694001CB803 /* FilmThumbnailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C7A7BF28A50694001CB803 /* FilmThumbnailView.swift */; };
 		C4C7A7C228A507D5001CB803 /* VideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C7A7C128A507D5001CB803 /* VideoPlayerView.swift */; };
 		C4C7A7C428A50C6B001CB803 /* test.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = C4C7A7C328A50868001CB803 /* test.mp4 */; };
+		C4D1504B2A18D91800186D06 /* HomeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D1504A2A18D91800186D06 /* HomeProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C4640A5E29BD541B008684A1 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		C4C7A78728A2A08B001CB803 /* VideoOnThemand.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VideoOnThemand.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4C7A78A28A2A08B001CB803 /* VideoOnThemandApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoOnThemandApp.swift; sourceTree = "<group>"; };
 		C4C7A78C28A2A08B001CB803 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -51,6 +54,7 @@
 		C4C7A7BF28A50694001CB803 /* FilmThumbnailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmThumbnailView.swift; sourceTree = "<group>"; };
 		C4C7A7C128A507D5001CB803 /* VideoPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerView.swift; sourceTree = "<group>"; };
 		C4C7A7C328A50868001CB803 /* test.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = test.mp4; sourceTree = "<group>"; };
+		C4D1504A2A18D91800186D06 /* HomeProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +143,8 @@
 				C4C7A79D28A2A254001CB803 /* Film.swift */,
 				C4C7A79F28A2A411001CB803 /* Utente.swift */,
 				C4C7A7A528A2A92C001CB803 /* Extensions.swift */,
+				C4640A5E29BD541B008684A1 /* Enums.swift */,
+				C4D1504A2A18D91800186D06 /* HomeProtocol.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -229,6 +235,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4D1504B2A18D91800186D06 /* HomeProtocol.swift in Sources */,
 				C4C7A7BC28A2C298001CB803 /* HomeView.swift in Sources */,
 				C4C7A78D28A2A08B001CB803 /* ContentView.swift in Sources */,
 				C4C7A7A428A2A573001CB803 /* LoginView.swift in Sources */,
@@ -236,6 +243,7 @@
 				C4C7A7A628A2A92C001CB803 /* Extensions.swift in Sources */,
 				C4C7A7BE28A40278001CB803 /* SettingsView.swift in Sources */,
 				C4C7A79E28A2A254001CB803 /* Film.swift in Sources */,
+				C4640A5F29BD541C008684A1 /* Enums.swift in Sources */,
 				C4C7A78B28A2A08B001CB803 /* VideoOnThemandApp.swift in Sources */,
 				C4C7A79B28A2A1A9001CB803 /* LoginViewModel.swift in Sources */,
 				C4C7A7C028A50694001CB803 /* FilmThumbnailView.swift in Sources */,
@@ -378,12 +386,13 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 2.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.MicheleManniello.VideoOnThemand;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 17.0;
 			};
 			name = Debug;
 		};
@@ -404,12 +413,13 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 2.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.MicheleManniello.VideoOnThemand;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 17.0;
 			};
 			name = Release;
 		};

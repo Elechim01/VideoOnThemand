@@ -20,7 +20,13 @@ class LoginViewModel: ObservableObject{
     @AppStorage("Email") var email = ""
     @AppStorage("IDUser") var idUser = ""
     
-   
+    @Published var localPage: Page  = .Login {
+        didSet { page = localPage.rawValue }
+    }
+    
+    init() {
+        self.localPage = Page.setValue(valore: page)
+    }
     
 //    Page: 0 -> Login, 1 -> Home
     
@@ -30,8 +36,8 @@ class LoginViewModel: ObservableObject{
             errorMessage = "Impossibile effettuare il login in assenza di connessione internet"
             return
         }
-        Auth.auth().signIn(withEmail: email, password: password){authResult,error in
-
+        Auth.auth().signIn(withEmail: email, password: password){[weak self] authResult, error in
+            guard let self = self else { return }
             if let err = error{
                 print(err.localizedDescription)
                 self.errorMessage = err.localizedDescription
@@ -57,7 +63,7 @@ class LoginViewModel: ObservableObject{
             self.email = ""
             self.password = ""
             self.idUser = ""
-            page = 0
+            localPage = .Login
         } catch let singoutError as NSError {
             print("Error %@",singoutError)
         }

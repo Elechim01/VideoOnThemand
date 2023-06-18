@@ -12,33 +12,59 @@ import FirebaseStorage
 import FirebaseFirestore
 import AVKit
 
-class HomeViewModel: ObservableObject{
+class HomeViewModel: ObservableObject, HomeProtocol {
     
 //     Recupero film e altro
     @Published var films : [Film] = []
-  
     @Published var localUser : Utente = Utente()
 //    Memorizzo la password, l'email e l'id
     @AppStorage("Password") var password = ""
     @AppStorage("Email") var email = ""
     @AppStorage("IDUser") var idUser = ""
-
+    @AppStorage("ShowGrid") var storageGrid = false
+    @AppStorage("Order") var storageAscendindOrder = false
+    
 //    MARK: Alert
     @Published var showAlert: Bool = false
     @Published var alertMessage : String = ""
+    @Published var showGrid = false {
+        didSet {
+            storageGrid = showGrid
+         print("storage: \(storageGrid)")
+        }
+    }
+    
+    @Published var orderAscending = false {
+        didSet {
+            self.films =  self.films.sorted(by:{ $0.nome.compare($1.nome,options: .caseInsensitive) ==  (self.orderAscending ? .orderedAscending : .orderedDescending) })
+             storageAscendindOrder = orderAscending
+        }
+    }
+    
+    public var totalSizeFilm: Double {
+        var size = 0.0
+        films.forEach { size += $0.size }
+        return size
+    }
+    
+    public let totalSize = 5000.0
     
     let firestore : Firestore
     let firebaseStorage: Storage
+    var stream: ListenerRegistration?
     
     init(){
         firestore = Firestore.firestore()
         firebaseStorage = Storage.storage()
+        showGrid = storageGrid
+        orderAscending = storageAscendindOrder
     }
     
-    func recuperoFilm(endidng:@escaping ()->()){
-//        MARK: For test
-        firestore.collection("Film").whereField("idUtente", isEqualTo: localUser.id).addSnapshotListener {
+    internal func recuperoFilm(endidng:@escaping ()->()){
+        //     MARK: For test
+        getFilmListener(firestore: firestore,stream: &stream ,localUser: localUser.id) { [weak self]
             querySnapshot, error in
+            guard let self = self else { return }
             if let erro = error{
                 self.alertMessage = erro.localizedDescription
                 self.showAlert.toggle()
@@ -48,27 +74,21 @@ class HomeViewModel: ObservableObject{
             else{
                 self.films.removeAll()
                 for document in querySnapshot!.documents{
-                    let id = document.documentID
                     let data = document.data()
-                    let idUtente: String = data["idUtente"] as? String ?? ""
-                    let nomefile = data["nome"] as? String ?? ""
-                    let url :String = data["url"] as? String ?? ""
-                    let thumbanil : String = data["thumbnail"] as? String ?? ""
-
-                    self.films.append(Film(id: id, idUtente: idUtente, nome: nomefile, url: url, thmbnail: thumbanil))
+                    if let film = Film.getFilm(json: data) {
+                        self.films.append(film)
+                    }
                 }
             }
-                print(self.films)
-                self.films =  self.films.sorted(by:{ $0.nome.compare($1.nome,options: .caseInsensitive) == .orderedAscending })
+            print(self.films)
+            self.films =  self.films.sorted(by:{ $0.nome.compare($1.nome,options: .caseInsensitive) ==  (self.orderAscending ? .orderedAscending : .orderedDescending) })
             endidng()
         }
-        
-
     }
     
-    func recuperoUtente(email: String, password:String,id: String,ending: (()->())?){
-        
-        firestore.collection("Utenti").whereField("email", isEqualTo: email).whereField("password",isEqualTo: password).getDocuments { querySnapshot, err  in
+    internal func recuperoUtente(email: String, password:String,id: String,ending: (()->())?){
+        getUserListener(firestore: firestore, email: email, password: password, id: id) { [weak self] querySnapshot, err  in
+            guard let self = self else { return }
             if let err = err {
                 self.alertMessage = err.localizedDescription
                 self.showAlert.toggle()
@@ -84,13 +104,9 @@ class HomeViewModel: ObservableObject{
                         return
                     }
                     let data = querySnapshot!.documents.first!.data()
-                    let nome : String = data["nome"] as? String ?? ""
-                    let cognome: String = data["cognome"] as? String ?? ""
-                    let eta: Int = data["eta"] as? Int ?? 0
-                    let email: String = data["email"] as? String ?? ""
-                    let password: String = data["password"] as? String ?? ""
-                    let cellulare: String = data["cellulare"] as? String ?? ""
-                    self.localUser = Utente(id: id, nome: nome, cognome: cognome, età: eta, email: email, password: password, cellulare: cellulare)
+                    if let user = Utente.getUser(json: data) {
+                        self.localUser = user
+                    }
 //                    per la pagina
                     ending?()
                 }
@@ -99,15 +115,14 @@ class HomeViewModel: ObservableObject{
         }
     }
     
-    
-    func createMetadata(title: String) -> [AVMetadataItem]{
+    internal func createMetadata(title: String) -> [AVMetadataItem]{
         let mapping: [AVMetadataIdentifier: Any] = [
             .iTunesMetadataTrackSubTitle : title,
         ]
         return mapping.compactMap{createMetadataItem(for: $0, value: $1)}
     }
     
-   private func createMetadataItem(for identifier: AVMetadataIdentifier,value: Any) -> AVMetadataItem {
+    private func createMetadataItem(for identifier: AVMetadataIdentifier,value: Any) -> AVMetadataItem {
         let item = AVMutableMetadataItem()
         item.identifier = identifier
         item.value = value as? NSCopying & NSObjectProtocol
@@ -116,3 +131,4 @@ class HomeViewModel: ObservableObject{
     }
     
 }
+

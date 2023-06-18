@@ -37,9 +37,6 @@ struct LoginView: View {
     }
     
     
-    
-    
-    
     var body: some View {
         VStack{
             Text("Benvenuto in app.")
@@ -65,11 +62,10 @@ struct LoginView: View {
 //                    Login
                     loginViewModel.login(email: email, password: password, completition: {id in
                         if(!id.isEmpty){
-                            
                             //Recupero utente
                             self.homeViewModel.recuperoUtente(email: email, password: password, id: id) {
                                 if(!homeViewModel.showAlert){
-                                    loginViewModel.page = 1
+                                    loginViewModel.localPage = .Home
                                 }
                             }
                         }
@@ -91,6 +87,12 @@ struct LoginView: View {
         .alert(loginViewModel.errorMessage, isPresented: $loginViewModel.showError, actions: {
             Button(action: {loginViewModel.showError = false}, label: {Text("OK")})
         })
+
+        .alert(homeViewModel.alertMessage, isPresented: $homeViewModel.showAlert, actions: {
+            Button(action: {loginViewModel.showError = false}, label: {Text("OK")})
+        })
+        
+        
     }
     
     
