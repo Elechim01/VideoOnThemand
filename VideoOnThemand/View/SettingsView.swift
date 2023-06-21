@@ -9,39 +9,57 @@ import SwiftUI
 import Charts
 
 struct SettingsView: View {
+    
     @Environment(\.isPreview) var isPreviews
-    @Binding var showAlert: Bool
+    @Binding  var showAlert: Bool
     @EnvironmentObject var homeViewModel: HomeViewModel
-  
+    @FocusState private var showFocus: InfoLabel?
+    @State private var pixellate: CGFloat = 20
+    private var showOrHide: Bool {
+        pixellate == 1 ? true : false
+    }
     var body: some View {
         HStack {
             
             VStack(alignment: .leading) {
+                CustomText(font: .title2,
+                           fontWeight: .bold,
+                           text: "Name: \(homeViewModel.localUser.nome)",
+                           infoLabel: .name)
                 
-                Text("Name: \(homeViewModel.localUser.nome)")
-                    .font(.title2)
-                    .fontWeight(.bold)
-                    .padding(.vertical)
-                
-                Text("Surname: \(homeViewModel.localUser.cognome)")
-                    .font(.title3)
-                    .padding(.vertical)
-                
-                Divider()
-                
-                Text("Cell: \(homeViewModel.localUser.cellulare)")
-                    .font(.system(size: 40))
-                    .padding(.vertical)
+                CustomText(font: .title3,
+                           text: "Surname: \(homeViewModel.localUser.cognome)",
+                           infoLabel: .surname)
                 
                 Divider()
                 
-                Text("Email: \(homeViewModel.localUser.email)")
-                    .font(.system(size: 40))
-                    .padding(.vertical)
+                CustomText(font: .system(size: 40),
+                           text: "Cell: \(homeViewModel.localUser.cellulare)",
+                           infoLabel: .cell)
                 
-                Text("Password: \(homeViewModel.localUser.password)")
-                    .font(.system(size: 40))
-                    .padding(.vertical)
+                
+                Divider()
+                
+                CustomText(font: .system(size: 40),
+                           text: "Email: \(homeViewModel.localUser.email)",
+                           infoLabel: .email)
+
+                CustomText(font: .system(size: 40),
+                           text: "Password: \(homeViewModel.localUser.password)",
+                           infoLabel: .password,
+                           usePixelate: true,
+                           pixellate: pixellate)
+                
+                Button {
+                    if pixellate == 1 {
+                        pixellate = 20
+                    } else {
+                        pixellate = 1
+                    }
+                } label: {
+                    Text(showOrHide ? "Hide password" : "Show password")
+                }
+
                 Spacer()
             }
            
@@ -103,7 +121,49 @@ struct SettingsView: View {
         }
         .padding()
     }
-   
+ 
+    
+    @ViewBuilder
+    func CustomText(font: Font, fontWeight: Font.Weight? = nil, text: String, infoLabel: InfoLabel,usePixelate: Bool = false, pixellate: CGFloat = 1) -> some View {
+        if usePixelate {
+            Text(text)
+                .font(font)
+                .fontWeight(fontWeight)
+                .frame(height: 60)
+                .padding(.vertical)
+                .distortionEffect(
+                    .init(
+                        function: .init(library: .default, name: "pixellate"),
+                        arguments : [.float(pixellate)]
+                    ),
+                    maxSampleOffset: .zero)
+            
+                .focusable(true)
+                .focused($showFocus, equals: infoLabel)
+                .background(showFocus == infoLabel ? .green : .clear)
+                .clipShape(Capsule())
+        } else {
+            Text(text)
+                .font(font)
+                .fontWeight(fontWeight)
+                .frame(height: 60)
+                .padding(.vertical)
+                .focusable(true)
+                .focused($showFocus, equals: infoLabel)
+                .background(showFocus == infoLabel ? .green : .clear)
+                .clipShape(Capsule())
+        }
+        
+    }
+    
+    enum InfoLabel {
+        case name
+        case surname
+        case cell
+        case email
+        case password
+    }
+    
 }
 
 struct SettingsView_Previews: PreviewProvider {

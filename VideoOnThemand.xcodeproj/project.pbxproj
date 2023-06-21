@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C4640A5F29BD541C008684A1 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4640A5E29BD541B008684A1 /* Enums.swift */; };
+		C47E10822A41DFCD004E1567 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = C47E10812A41DFCD004E1567 /* Shaders.metal */; };
 		C4C7A78B28A2A08B001CB803 /* VideoOnThemandApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C7A78A28A2A08B001CB803 /* VideoOnThemandApp.swift */; };
 		C4C7A78D28A2A08B001CB803 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C7A78C28A2A08B001CB803 /* ContentView.swift */; };
 		C4C7A78F28A2A08D001CB803 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4C7A78E28A2A08D001CB803 /* Assets.xcassets */; };
@@ -37,6 +38,7 @@
 
 /* Begin PBXFileReference section */
 		C4640A5E29BD541B008684A1 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		C47E10812A41DFCD004E1567 /* Shaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
 		C4C7A78728A2A08B001CB803 /* VideoOnThemand.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VideoOnThemand.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4C7A78A28A2A08B001CB803 /* VideoOnThemandApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoOnThemandApp.swift; sourceTree = "<group>"; };
 		C4C7A78C28A2A08B001CB803 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 		C4C7A79828A2A13C001CB803 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C47E10812A41DFCD004E1567 /* Shaders.metal */,
 				C4C7A7A328A2A573001CB803 /* LoginView.swift */,
 				C4C7A7BB28A2C298001CB803 /* HomeView.swift */,
 				C4C7A7BD28A40278001CB803 /* SettingsView.swift */,
@@ -244,6 +247,7 @@
 				C4C7A7BE28A40278001CB803 /* SettingsView.swift in Sources */,
 				C4C7A79E28A2A254001CB803 /* Film.swift in Sources */,
 				C4640A5F29BD541C008684A1 /* Enums.swift in Sources */,
+				C47E10822A41DFCD004E1567 /* Shaders.metal in Sources */,
 				C4C7A78B28A2A08B001CB803 /* VideoOnThemandApp.swift in Sources */,
 				C4C7A79B28A2A1A9001CB803 /* LoginViewModel.swift in Sources */,
 				C4C7A7C028A50694001CB803 /* FilmThumbnailView.swift in Sources */,
