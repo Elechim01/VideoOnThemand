@@ -86,6 +86,25 @@ class HomeViewModel: ObservableObject, HomeProtocol {
         }
     }
     
+    internal func recuperoThumbnail(c: Int = 0) {
+        var count = c
+        print(count)
+        self.getThumbNail(storage: firebaseStorage, film: films[count]) { [weak self] path in
+            guard let self = self else { return }
+                films[c].localImage = URL(fileURLWithPath: path)
+                count += 1
+            if count < self.films.count {
+                self.recuperoThumbnail(c: count)
+            }
+        } failure: { [weak self] error in
+            guard let self = self else { return  }
+            self.alertMessage = error.localizedDescription
+            self.showAlert.toggle()
+        }
+
+        
+    }
+    
     internal func recuperoUtente(email: String, password:String,id: String,ending: (()->())?){
         getUserListener(firestore: firestore, email: email, password: password, id: id) { [weak self] querySnapshot, err  in
             guard let self = self else { return }

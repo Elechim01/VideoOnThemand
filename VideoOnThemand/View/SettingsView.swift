@@ -60,11 +60,13 @@ struct SettingsView: View {
                     Text(showOrHide ? "Hide password" : "Show password")
                 }
 
-                Spacer()
+                Text("Spazio: \(String.twoDecimal(number: homeViewModel.totalSize)) / \( String.twoDecimal(number: homeViewModel.totalSizeFilm))\nLibero \(String.twoDecimal(number: homeViewModel.totalSize - homeViewModel.totalSizeFilm) ) ")
+                    .padding(.top)
             }
            
             Spacer()
             VStack {
+                
                 List {
                     Section("Utente") {
                   
@@ -98,28 +100,28 @@ struct SettingsView: View {
                     .cornerRadius(13)
                                     
                   }
-                Chart(isPreviews ? mockFilms : homeViewModel.films) { film in
-                    SectorMark(
-                        angle: .value("Size",  film.size),
-                        innerRadius: .ratio(0.05),
-                        angularInset: 1
-                    )
-                    .foregroundStyle(by: .value("Name", film.nome))
-                   
-                }
-                .chartLegend(position: .leading,
-                             alignment: .leading,
-                             spacing: 20)
-                
-                Text("Spazio: \(String.twoDecimal(number: homeViewModel.totalSize)) / \( String.twoDecimal(number: homeViewModel.totalSizeFilm))\nLibero \(String.twoDecimal(number: homeViewModel.totalSize - homeViewModel.totalSizeFilm) ) ")
-                    .padding(.top)
-               
+                    Chart(isPreviews ? mockFilms : homeViewModel.films) { film in
+                        
+                        SectorMark(
+                            angle: .value("Size",  film.size),
+                            innerRadius: .ratio(0.05),
+                            angularInset: 1
+                        )
+                        .foregroundStyle(by: .value("Name", film.nome))
+                        
+                    }
+                    .chartLegend(position: .automatic,
+                                 alignment: .centerLastTextBaseline,
+                                                 spacing: 15)
             }
             
             .frame(width: 800)
             .padding()
         }
         .padding()
+        .onAppear {
+            print(mockFilms)
+        }
     }
  
     

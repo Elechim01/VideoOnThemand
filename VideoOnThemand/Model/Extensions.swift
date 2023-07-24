@@ -15,6 +15,13 @@ class Extensions{
         return NetworkReachabilityManager()!.isReachable
     }
     
+    static func getDocumentsDirectory() -> URL{
+  //        find all possible documents directories for ths user
+        let paths = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)
+  //        Just send back the first one, witch ought to be only one
+          return paths[0]
+      }
+    
  static   func isValidEmail(_ email: String) -> Bool {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
 

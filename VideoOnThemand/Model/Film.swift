@@ -18,6 +18,7 @@ struct Film: Identifiable, Codable {
     var url: String
     var thumbnail: String
     var size: Double
+    var localImage: URL?
     
     init(){
         id = UUID().uuidString
@@ -76,11 +77,9 @@ struct Film: Identifiable, Codable {
 }
 
 var mockFilms: [Film] {
-var array = [Film]()
-    let lettere = "abcdefghijklmnopqrstuvwxyz"
-    for _ in 1...15 {
-        guard let tes = lettere.randomElement() else { return [] }
-        array.append(Film(nome: "\(tes)"))
+    var array = [Film]()
+    for i in 0...11 {
+        array.append(Film(nome: "OnePiece_Ep_\(i)_SUB_ITA.mp4"))
     }
     return array
     

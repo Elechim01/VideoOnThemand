@@ -52,7 +52,7 @@ struct HomeView: View {
                                 Spacer()
                               
                             ProgressView()
-                                    .shadow(color: Color(red: 0, green: 0, blue: 0.6),
+                                    .shadow(color: Color(red: 0, green: 0, blue: 10),
                                                         radius: 4.0, x: 1.0, y: 2.0)
                                 Spacer()
                             }
@@ -75,14 +75,19 @@ struct HomeView: View {
                 }
                 Spacer()
             }
+            .onChange(of: page) { oldValue, newValue in
+                print(newValue)
+            }
         }
             .onAppear{
+                
                 UIApplication.shared.windows.first?.snapshotView(afterScreenUpdates: true)
                 if isPreviews {
                     homeviewModel.films = mockFilms
                     loginViewModel.idUser = mockUtente.id
                     
                 }else {
+                    self.showProgressView = true
                     if homeviewModel.localUser.isEmply{
                         Task {
                             homeviewModel.recuperoUtente(email: homeviewModel.email, password: homeviewModel.password, id: homeviewModel.idUser) {
@@ -93,17 +98,21 @@ struct HomeView: View {
                                     DispatchQueue.main.async {
                                         self.showProgressView = false
                                     }
+                                    Task(priority: .background) {
+                                        homeviewModel.recuperoThumbnail()
+                                    }
+                                   
                                 })
                             }
                         }
                     } else{
                         self.showProgressView = true
+                        print("Fetch film")
                         Task {
                             homeviewModel.recuperoFilm(endidng: {
                                 DispatchQueue.main.async {
                                     self.showProgressView = false
                                 }
-                               
                             })
                         }
                     }
