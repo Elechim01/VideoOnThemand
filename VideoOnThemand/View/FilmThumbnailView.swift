@@ -27,7 +27,7 @@ struct FilmThumbnailView: View {
                             }
                         
                     }else{
-                        AsyncImage(url: film.localImage ?? URL(string: "")) { image  in
+                        AsyncImage(url: film.localImage ?? URL(string: film.thumbnail)) { image  in
                             image
                                 .resizable()
                         } placeholder: {
