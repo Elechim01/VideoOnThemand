@@ -94,6 +94,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C4201C2C2EA3FEE700766FB5 /* CustomComponents */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CustomComponents;
+			sourceTree = "<group>";
+		};
 		C4C044542E4FA9E800E947F4 /* Strings */ = {
 			isa = PBXGroup;
 			children = (
@@ -134,6 +141,7 @@
 		C4C7A78928A2A08B001CB803 /* VideoOnThemand */ = {
 			isa = PBXGroup;
 			children = (
+				C4201C2C2EA3FEE700766FB5 /* CustomComponents */,
 				C4CC5D072E5DB0D300C4B007 /* Protocol */,
 				C4C044552E50909D00E947F4 /* Extension */,
 				C4C044542E4FA9E800E947F4 /* Strings */,
