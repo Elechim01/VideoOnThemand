@@ -50,7 +50,7 @@ struct PageManager: View {
             }
             .padding()
         }
-        .background(Color("T1").ignoresSafeArea())
+        .background(Color("Green").ignoresSafeArea())
         .focusScope(focusNamespace)
     }
     
