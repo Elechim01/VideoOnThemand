@@ -87,11 +87,9 @@ struct LoginView: View {
         .alert(loginViewModel.errorMessage, isPresented: $loginViewModel.showError, actions: {
             Button(action: {loginViewModel.showError = false}, label: {Text("OK")})
         })
-
         .alert(homeViewModel.alertMessage, isPresented: $homeViewModel.showAlert, actions: {
             Button(action: {loginViewModel.showError = false}, label: {Text("OK")})
         })
-        
         
     }
     

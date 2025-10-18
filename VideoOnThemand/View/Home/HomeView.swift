@@ -125,9 +125,6 @@ struct HomeView: View {
                         FilmThumbnailView(film: $film)
                         .environmentObject(homeviewModel)
                         .frame(maxWidth: .infinity)
-                       
-                        
-                      
                 }
             }
             .padding(.horizontal)

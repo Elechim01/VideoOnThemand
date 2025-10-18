@@ -33,7 +33,7 @@ struct VideoPlayerView: View {
                 // Riproduci quando pronto
                 playerManager.playWhenReady()
              
-//                Chiusira automatica
+//                Chiusura  automatica
                 NotificationCenter.default.addObserver(
                     forName: AVPlayerItem.didPlayToEndTimeNotification,
                     object: playerItem, queue: .main) { _ in
