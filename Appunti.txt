@@ -1,0 +1,7 @@
+ New Raccorda -> Cronologia
+ Documenti ID: auto
+ contiene :
+    - id: id della riproduzione
+    - data e ora della riproduzione "?nome?"
+    - nome film : nome film che sto riproducendo
+    - idFilm: ID Del film che ho riprodotto

@@ -1,0 +1,23 @@
+/* 
+  Localizable.strings
+  VideoOnThemand
+
+  Created by Michele Manniello on 15/08/25.
+  
+*/
+"SETTINGS.NAME" = "Name: %@";
+"SETTINGS.SURNAME" = "Surname: %@";
+"SETTINGS.CELL" = "Phone: %@";
+"SETTINGS.EMAIL" = "Email: %@";
+"SETTINGS.PASSWORD" = "Password: %@";
+"SETTINGS.HIDE.PASSWORD" = "Hide password";
+"SETTINGS.SHOW.PASSWORD" = "Show password";
+"SETTINGS.SPACE" = "Space";
+"SETTINGS.FREE" = "Free";
+"SETTINGS.SECTION.USER" = "User";
+"SETTINGS.LIST" = "Switch to list";
+"SETTINGS.GRID" = "Switch to grid";
+"SETTINGS.LOGOUT" = "Logout";
+"SETTINGS.DESCENDING" = "Switch to descending";
+"SETTINGS.ASCENDING" = "Switch to ascending";
+

@@ -8,6 +8,7 @@
 import UIKit
 import SwiftUI
 import Firebase
+import FirebaseAuth
 
 class LoginViewModel: ObservableObject{
  
@@ -25,7 +26,19 @@ class LoginViewModel: ObservableObject{
     }
     
     init() {
+        #if DEBUG
+        if ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1" {
+            self.localPage = .Home
+        } else {
+            self.localPage = Page.setValue(valore: page)
+        }
+        
+        #else
+        
         self.localPage = Page.setValue(valore: page)
+        #endif
+        
+     
     }
     
 //    Page: 0 -> Login, 1 -> Home

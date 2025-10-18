@@ -12,34 +12,36 @@ import FirebaseStorage
 import FirebaseFirestore
 import AVKit
 
-class HomeViewModel: ObservableObject, HomeProtocol {
+class HomeViewModel: ObservableObject {
     
-//     Recupero film e altro
+    //     Recupero film e altro
     @Published var films : [Film] = []
     @Published var localUser : Utente = Utente()
-//    Memorizzo la password, l'email e l'id
+    //    Memorizzo la password, l'email e l'id
     @AppStorage("Password") var password = ""
     @AppStorage("Email") var email = ""
     @AppStorage("IDUser") var idUser = ""
     @AppStorage("ShowGrid") var storageGrid = false
     @AppStorage("Order") var storageAscendindOrder = false
     
-//    MARK: Alert
+    //    MARK: Alert
     @Published var showAlert: Bool = false
     @Published var alertMessage : String = ""
     @Published var showGrid = false {
         didSet {
             storageGrid = showGrid
-         print("storage: \(storageGrid)")
+            print("storage: \(storageGrid)")
         }
     }
     
     @Published var orderAscending = false {
         didSet {
             self.films =  self.films.sorted(by:{ $0.nome.compare($1.nome,options: .caseInsensitive) ==  (self.orderAscending ? .orderedAscending : .orderedDescending) })
-             storageAscendindOrder = orderAscending
+            storageAscendindOrder = orderAscending
         }
     }
+    
+    @Published var chronologyList: [Chronology] = []
     
     public var totalSizeFilm: Double {
         var size = 0.0
@@ -54,86 +56,13 @@ class HomeViewModel: ObservableObject, HomeProtocol {
     var stream: ListenerRegistration?
     
     init(){
-        firestore = Firestore.firestore()
-        firebaseStorage = Storage.storage()
+        firestore =  FirebaseManager.shared.firestore
+        firebaseStorage = FirebaseManager.shared.firebaseStorage
         showGrid = storageGrid
         orderAscending = storageAscendindOrder
     }
     
-    internal func recuperoFilm(endidng:@escaping ()->()){
-        //     MARK: For test
-        getFilmListener(firestore: firestore,stream: &stream ,localUser: localUser.id) { [weak self]
-            querySnapshot, error in
-            guard let self = self else { return }
-            if let erro = error{
-                self.alertMessage = erro.localizedDescription
-                self.showAlert.toggle()
-                endidng()
-                return
-            }
-            else{
-                self.films.removeAll()
-                for document in querySnapshot!.documents{
-                    let data = document.data()
-                    if let film = Film.getFilm(json: data) {
-                        self.films.append(film)
-                    }
-                }
-            }
-            print(self.films)
-            self.films =  self.films.sorted(by:{ $0.nome.compare($1.nome,options: .caseInsensitive) ==  (self.orderAscending ? .orderedAscending : .orderedDescending) })
-            endidng()
-        }
-    }
-    
-    internal func recuperoThumbnail(c: Int = 0) {
-        var count = c
-        print(count)
-        self.getThumbNail(storage: firebaseStorage, film: films[count]) { [weak self] path in
-            guard let self = self else { return }
-                films[c].localImage = URL(fileURLWithPath: path)
-                count += 1
-            if count < self.films.count {
-                self.recuperoThumbnail(c: count)
-            }
-        } failure: { [weak self] error in
-            guard let self = self else { return  }
-            self.alertMessage = error.localizedDescription
-            self.showAlert.toggle()
-        }
-
-        
-    }
-    
-    internal func recuperoUtente(email: String, password:String,id: String,ending: (()->())?){
-        getUserListener(firestore: firestore, email: email, password: password, id: id) { [weak self] querySnapshot, err  in
-            guard let self = self else { return }
-            if let err = err {
-                self.alertMessage = err.localizedDescription
-                self.showAlert.toggle()
-               ending?()
-                
-            }else{
-                if(querySnapshot!.documents.count > 1){
-                    self.alertMessage = "Errore nel DB presente più utenti"
-                    self.showAlert.toggle()
-                    ending?()
-                }else{
-                    if(querySnapshot!.documents.first == nil){
-                        return
-                    }
-                    let data = querySnapshot!.documents.first!.data()
-                    if let user = Utente.getUser(json: data) {
-                        self.localUser = user
-                    }
-//                    per la pagina
-                    ending?()
-                }
-                print(self.localUser)
-            }
-        }
-    }
-    
+   
     internal func createMetadata(title: String) -> [AVMetadataItem]{
         let mapping: [AVMetadataIdentifier: Any] = [
             .iTunesMetadataTrackSubTitle : title,
@@ -149,5 +78,121 @@ class HomeViewModel: ObservableObject, HomeProtocol {
         return item.copy() as! AVMetadataItem
     }
     
+ 
+    
 }
 
+extension HomeViewModel: FirebaseProtocol {
+    func recuperoFilm(endidng:@escaping () async ->()){
+    //     MARK: For test
+    getFilmListener(firestore: firestore,stream: &stream ,localUser: localUser.id) { [weak self]
+        querySnapshot, error in
+        guard let self = self else { return }
+        if let erro = error{
+            self.alertMessage = erro.localizedDescription
+            self.showAlert.toggle()
+            Task{
+                await endidng()
+            }
+            
+            return
+        }
+        else{
+            self.films.removeAll()
+#if DEBUG
+            let limit = 2
+            var count = 0
+            for document in querySnapshot!.documents{
+                guard count != limit else {
+                    break
+                }
+                
+                let data = document.data()
+                if let film = Film.getFilm(json: data) {
+                    self.films.append(film)
+                }
+                count+=1
+            }
+            
+            
+#else
+            
+            
+            for document in querySnapshot!.documents{
+                let data = document.data()
+                if let film = Film.getFilm(json: data) {
+                    self.films.append(film)
+                }
+            }
+#endif
+        }
+        print(self.films)
+        self.films =  self.films.sorted(by:{ $0.nome.compare($1.nome,options: .caseInsensitive) ==  (self.orderAscending ? .orderedAscending : .orderedDescending) })
+        Task{
+            await endidng()
+        }
+    }
+}
+    
+    func recuperoThumbnail(c: Int = 0) {
+    var count = c
+    print(count)
+    self.getThumbNail(storage: firebaseStorage, film: films[count]) { [weak self] path in
+        guard let self = self else { return }
+        films[c].localImage = URL(fileURLWithPath: path)
+        count += 1
+        if count < self.films.count {
+            self.recuperoThumbnail(c: count)
+        }
+    } failure: { [weak self] error in
+        guard let self = self else { return  }
+        self.alertMessage = error.localizedDescription
+        self.showAlert.toggle()
+    }
+    
+    
+}
+    
+    func recuperoUtente(email: String, password:String,id: String,ending: (() async -> ())?){
+        getUserListener(firestore: firestore, email: email, password: password, id: id) { [weak self] querySnapshot, err  in
+            guard let self = self else { return }
+            if let err = err {
+                self.alertMessage = err.localizedDescription
+                self.showAlert.toggle()
+                Task{
+                    await ending?()
+                }
+                
+            }else{
+                if(querySnapshot!.documents.count > 1){
+                    self.alertMessage = "Errore nel DB presente più utenti"
+                    self.showAlert.toggle()
+                    Task{
+                        await ending?()
+                    }
+                }else{
+                    if(querySnapshot!.documents.first == nil){
+                        return
+                    }
+                    let data = querySnapshot!.documents.first!.data()
+                    if let user = Utente.getUser(json: data) {
+                        self.localUser = user
+                    }
+                    //                    per la pagina
+                    Task{
+                        await ending?()
+                    }
+                }
+                print(self.localUser)
+            }
+        }
+    }
+    
+    func updateData(selectedFilm: Film) {
+        
+        updatePlayDate(firestore: firestore, film: selectedFilm, localUser: localUser.id, onError: { error in
+            print("\(error.localizedDescription)")
+        })
+        
+    }
+}

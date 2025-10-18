@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C4C7A78628A2A08B001CB803"
-               BuildableName = "VideoOnThemand.app"
-               BlueprintName = "VideoOnThemand"
+               BlueprintIdentifier = "C4A128EB2E523F8700F32414"
+               BuildableName = "VideoOnThemand-Debug.app"
+               BlueprintName = "VideoOnThemand-Debug"
                ReferencedContainer = "container:VideoOnThemand.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -31,7 +31,7 @@
       </Testables>
    </TestAction>
    <LaunchAction
-      buildConfiguration = "Release"
+      buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
@@ -50,6 +50,15 @@
             ReferencedContainer = "container:VideoOnThemand.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "C4A128EB2E523F8700F32414"
+            BuildableName = "VideoOnThemand-Debug.app"
+            BlueprintName = "VideoOnThemand-Debug"
+            ReferencedContainer = "container:VideoOnThemand.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -57,16 +66,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "C4C7A78628A2A08B001CB803"
-            BuildableName = "VideoOnThemand.app"
-            BlueprintName = "VideoOnThemand"
+            BlueprintIdentifier = "C4A128EB2E523F8700F32414"
+            BuildableName = "VideoOnThemand-Debug.app"
+            BlueprintName = "VideoOnThemand-Debug"
             ReferencedContainer = "container:VideoOnThemand.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

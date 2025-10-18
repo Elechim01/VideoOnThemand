@@ -24,7 +24,7 @@ struct ContentView: View {
                 .environmentObject(homeViewModel)
             
         } else if(loginViewModel.localPage == .Home){
-            HomeView()
+           PageManager()
                 .environmentObject(loginViewModel)
                 .environmentObject(homeViewModel)
             

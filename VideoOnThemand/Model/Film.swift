@@ -27,6 +27,7 @@ struct Film: Identifiable, Codable {
         url = ""
         thumbnail =  ""
         size = 0
+        
     }
     
     init(nome: String) {
@@ -67,7 +68,8 @@ struct Film: Identifiable, Codable {
     static func getFilm(json: [String: Any]) -> Film? {
         do {
             let data = try JSONSerialization.data(withJSONObject: json)
-            let film = try JSONDecoder().decode(Self.self, from: data)
+            let decode = JSONDecoder()
+            let film = try decode.decode(Self.self, from: data)
             return film
         } catch  {
             return nil

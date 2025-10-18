@@ -9,13 +9,18 @@ import Foundation
 import FirebaseFirestore
 import FirebaseStorage
 
-protocol HomeProtocol {
-    func getFilmListener(firestore:Firestore, stream: inout ListenerRegistration? ,localUser:String, listener: @escaping (QuerySnapshot?,Error?) -> Void)
+protocol FirebaseProtocol {
+    func getFilmListener(firestore:Firestore, stream: inout ListenerRegistration?, localUser:String, listener: @escaping (QuerySnapshot?,Error?) -> Void)
     func getUserListener(firestore:Firestore,email: String, password:String,id: String ,listener: @escaping (QuerySnapshot?,Error?) -> Void)
     func getThumbNail(storage:Storage,film: Film ,succes: @escaping (String) -> Void, failure: @escaping(Error) -> Void)
+    
+    func updatePlayDate(firestore: Firestore, film: Film,localUser:String, onError: @escaping(Error)->())
+    
+    func getChronologyListener(firestore: Firestore, localUser:String, stream: inout ListenerRegistration?, listener: @escaping (QuerySnapshot?,Error?) -> Void)
+
 }
 
-extension HomeProtocol {
+extension FirebaseProtocol {
     
     func getFilmListener(firestore:Firestore, stream: inout ListenerRegistration?, localUser:String, listener: @escaping (QuerySnapshot?,Error?) -> Void) {
         stream = firestore.collection("Film").whereField("idUtente", isEqualTo: localUser).addSnapshotListener(listener)
@@ -53,5 +58,23 @@ extension HomeProtocol {
         } catch  {
             print(error)
         }
+    }
+    
+    func updatePlayDate(firestore: Firestore, film: Film,localUser:String, onError: @escaping(Error)->()) {
+        do {
+            let chronology = Chronology(film: film,localUser: localUser)
+            try  firestore.collection("Cronologia").document(film.id).setData(from: chronology) { error in
+                if let error = error {
+                    onError(error)
+                }
+            }
+            print("Success")
+        } catch {
+            onError(error)
+        }
+    }
+    
+    func getChronologyListener(firestore: Firestore, localUser:String, stream: inout ListenerRegistration?, listener: @escaping (QuerySnapshot?,Error?) -> Void) {
+        stream = firestore.collection("Cronologia").whereField("idUtente", isEqualTo: localUser).addSnapshotListener(listener)
     }
 }
