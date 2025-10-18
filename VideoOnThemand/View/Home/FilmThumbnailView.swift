@@ -40,7 +40,6 @@ struct FilmThumbnailView: View {
                     }
                 }
                 .buttonStyle(CardButtonStyle())
-                .glassEffect(.regular, in: .buttonBorder)
                 .padding()
                 
             
@@ -48,7 +47,6 @@ struct FilmThumbnailView: View {
                 .frame(width: 200)
                 .font(.caption)
                 .padding()
-                .glassEffect(.regular, in: .buttonBorder)
             
         }
        

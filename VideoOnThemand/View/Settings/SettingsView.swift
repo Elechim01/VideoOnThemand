@@ -59,17 +59,14 @@ struct SettingsView: View {
                 } label: {
                     Text(showOrHide ? "SETTINGS.HIDE.PASSWORD".localized() : "SETTINGS.SHOW.PASSWORD".localized())
                 }
-                .glassEffect(.regular, in: .capsule)
                 
                 
                 Text("\("SETTINGS.SPACE".localized()) \(formatStorage(homeViewModel.totalSize)) / \(formatStorage(homeViewModel.totalSizeFilm))")
                     .padding()
-                    .glassEffect(.regular, in: .capsule)
                     .padding(.top)
                 
                 Text("\("SETTINGS.FREE".localized()) \(formatStorage(homeViewModel.totalSize - homeViewModel.totalSizeFilm))")
                     .padding()
-                    .glassEffect(.regular, in: .capsule)
                     .padding(.top)
             }
             
@@ -111,7 +108,6 @@ struct SettingsView: View {
                     .foregroundStyle(by: .value("Name", film.nome))
                     
                 }
-                .glassEffect(.regular, in: .containerRelative)
                 .chartLegend(position: .automatic,
                              alignment: .centerLastTextBaseline,
                              spacing: 15)
@@ -161,10 +157,6 @@ struct SettingsView: View {
             .focusable(true)
             .focused($showFocus, equals: infoLabel)
             .padding(.horizontal)
-            .if(!usePixelate, trasform: { view in
-                view
-                 .glassEffect(.regular, in: .capsule)
-            })
             
         
     }
@@ -180,7 +172,6 @@ struct SettingsView: View {
         .buttonStyle(.plain)
         .background(Color.gray.opacity(0.5))
         .cornerRadius(13)
-        .glassEffect(.regular, in: .buttonBorder)
     }
     
     enum InfoLabel {
