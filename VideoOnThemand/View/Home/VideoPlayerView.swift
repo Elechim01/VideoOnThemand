@@ -92,9 +92,9 @@ final class PlayerManager: ObservableObject {
 }
 
 
-/*
+
 struct VideoPlayerView_Previews: PreviewProvider {
     static var previews: some View {
         VideoPlayerView(film: Film())
     }
-}*/
+}

@@ -54,7 +54,7 @@ struct FilmThumbnailView: View {
        
     }
 }
-/*
+
 struct FilmThumbnail_Previews: PreviewProvider {
     static var previews: some View {
         FilmThumbnailView(film: .constant(Film()))
@@ -63,4 +63,4 @@ struct FilmThumbnail_Previews: PreviewProvider {
         
         
     }
-}*/
+}
