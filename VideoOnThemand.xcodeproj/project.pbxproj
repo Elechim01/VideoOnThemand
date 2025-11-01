@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C40C14302EA5757E0056EA34 /* BubbleText.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40C142F2EA5757E0056EA34 /* BubbleText.swift */; };
+		C40C14332EA578130056EA34 /* FocusModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40C14322EA578130056EA34 /* FocusModifier.swift */; };
+		C40C14352EA57B8B0056EA34 /* PixelateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40C14342EA57B8A0056EA34 /* PixelateView.swift */; };
 		C4640A5F29BD541C008684A1 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4640A5E29BD541B008684A1 /* Enums.swift */; };
 		C47E10822A41DFCD004E1567 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = C47E10812A41DFCD004E1567 /* Shaders.metal */; };
 		C4C044522E4FA9B700E947F4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C4C044502E4FA9B700E947F4 /* Localizable.strings */; };
@@ -43,6 +46,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C40C142F2EA5757E0056EA34 /* BubbleText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleText.swift; sourceTree = "<group>"; };
+		C40C14322EA578130056EA34 /* FocusModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusModifier.swift; sourceTree = "<group>"; };
+		C40C14342EA57B8A0056EA34 /* PixelateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixelateView.swift; sourceTree = "<group>"; };
 		C4524EDD2A6E798900B22C1C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		C4640A5E29BD541B008684A1 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		C47E10812A41DFCD004E1567 /* Shaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
@@ -94,9 +100,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C40C14312EA578010056EA34 /* CustomModifier */ = {
+			isa = PBXGroup;
+			children = (
+				C40C14322EA578130056EA34 /* FocusModifier.swift */,
+			);
+			path = CustomModifier;
+			sourceTree = "<group>";
+		};
 		C4201C2C2EA3FEE700766FB5 /* CustomComponents */ = {
 			isa = PBXGroup;
 			children = (
+				C40C14312EA578010056EA34 /* CustomModifier */,
 				C4201C322EA420B000766FB5 /* CustomTextField */,
 				C4201C312EA4203000766FB5 /* CustomButton */,
 				C4201C302EA4202200766FB5 /* CustomText */,
@@ -107,6 +122,8 @@
 		C4201C302EA4202200766FB5 /* CustomText */ = {
 			isa = PBXGroup;
 			children = (
+				C40C142F2EA5757E0056EA34 /* BubbleText.swift */,
+				C40C14342EA57B8A0056EA34 /* PixelateView.swift */,
 			);
 			path = CustomText;
 			sourceTree = "<group>";
@@ -374,14 +391,17 @@
 				C4C044592E509E1F00E947F4 /* ViewExt.swift in Sources */,
 				C4E532612E5CC25800AEADBB /* Chronology.swift in Sources */,
 				C4E532652E5CCE1000AEADBB /* ChronologyView.swift in Sources */,
+				C40C14332EA578130056EA34 /* FocusModifier.swift in Sources */,
 				C4C044572E5090AB00E947F4 /* StringExt.swift in Sources */,
 				C4C7A78D28A2A08B001CB803 /* ContentView.swift in Sources */,
 				C4C7A7A428A2A573001CB803 /* LoginView.swift in Sources */,
 				C4CC5D092E5DB14C00C4B007 /* ChronologyViewModel.swift in Sources */,
+				C40C14352EA57B8B0056EA34 /* PixelateView.swift in Sources */,
 				C4CC5D0E2E5DB42C00C4B007 /* FirebaseManager.swift in Sources */,
 				C4C7A7A228A2A4CF001CB803 /* HomeViewModel.swift in Sources */,
 				C4C7A7A628A2A92C001CB803 /* Extensions.swift in Sources */,
 				C4C7A7BE28A40278001CB803 /* SettingsView.swift in Sources */,
+				C40C14302EA5757E0056EA34 /* BubbleText.swift in Sources */,
 				C4C7A79E28A2A254001CB803 /* Film.swift in Sources */,
 				C4640A5F29BD541C008684A1 /* Enums.swift in Sources */,
 				C47E10822A41DFCD004E1567 /* Shaders.metal in Sources */,

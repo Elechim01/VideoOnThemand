@@ -144,11 +144,12 @@ struct SettingsView: View {
     @ViewBuilder
     private func CustomText(font: Font, fontWeight: Font.Weight? = nil, text: String, infoLabel: InfoLabel,usePixelate: Bool = false, pixellate: CGFloat = 1) -> some View {
         
-        Text(text)
-            .font(font)
-            .fontWeight(fontWeight)
-            .frame(height: 60)
-            .modifier(CustomButtonModifier(isFocused: showFocus == infoLabel))
+
+        BubbleText(text: text, font: font, fontWeight: fontWeight)
+            .modifier(FocusModifier(isFocused: showFocus == infoLabel,
+                                    focused: $showFocus,
+                                    equals: infoLabel))
+        
             .if(usePixelate, trasform: { view in
                 view
                     .distortionEffect(
@@ -157,13 +158,6 @@ struct SettingsView: View {
                             arguments : [.float(pixellate)]
                         ),
                         maxSampleOffset: .zero)
-            })
-            .focusable(true)
-            .focused($showFocus, equals: infoLabel)
-            .padding(.horizontal)
-            .if(!usePixelate, trasform: { view in
-                view
-                 .glassEffect(.regular, in: .capsule)
             })
             
         
@@ -191,25 +185,7 @@ struct SettingsView: View {
         case password
     }
     
-    private struct CustomButtonModifier: ViewModifier {
-        var isFocused: Bool
-        
-        func body(content: Content) -> some View {
-            content
-              //  .padding(.vertical, isFocused ? 20 : 10)
-                .padding(.horizontal, isFocused ? 20: 10)
-                .background(isFocused ? Color("Green").opacity(0.9) : .clear)
-                .clipShape(Capsule())
-            
-                .padding(.horizontal, isFocused ? 0 : 0)
-               /* .background(
-                    Capsule()
-                        .stroke(isFocused ? Color.white : Color.clear, lineWidth: 4)
-                )
-                */
-            
-        }
-    }
+ 
     
     private func formatStorage(_ mb: Double) -> String {
         guard mb > 1024 else {
@@ -229,7 +205,7 @@ struct SettingsView_Previews: PreviewProvider {
        SettingsView()
             .environmentObject(LoginViewModel())
             .environmentObject(HomeViewModel())
-            .background(Color("T1"))
+            .background(Color("Background"))
         
     }
 }
