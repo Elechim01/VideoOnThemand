@@ -16,7 +16,8 @@ struct SettingsView: View {
     @EnvironmentObject var loginViewModel: LoginViewModel
     
     @FocusState private var showFocus: InfoLabel?
-    @State private var pixellate: CGFloat = 20
+    private let pixellate: CGFloat = 20
+    @State private var usePixelate: Bool = true
     private var showOrHide: Bool { pixellate == 1 }
     
     var body: some View {
@@ -24,38 +25,38 @@ struct SettingsView: View {
             VStack(alignment: .leading) {
                 CustomText(font: .title2,
                            fontWeight: .bold,
-                           text: "SETTINGS.NAME".localized(homeViewModel.localUser.nome),
+                           text: homeViewModel.localUser.nome,
                            infoLabel: .name)
                 
                 CustomText(font: .title3,
-                           text:  "SETTINGS.SURNAME".localized(homeViewModel.localUser.cognome),
+                           text:  homeViewModel.localUser.cognome,
                            infoLabel: .surname)
                 
                 Divider()
                 
                 CustomText(font: .system(size: 40),
-                           text: "SETTINGS.CELL".localized(homeViewModel.localUser.cellulare),
+                           text: homeViewModel.localUser.cellulare,
                            infoLabel: .cell)
-                
+        
                 
                 Divider()
                 
                 CustomText(font: .system(size: 40),
-                           text: "SETTINGS.EMAIL".localized(homeViewModel.localUser.email),
+                           text: homeViewModel.localUser.email,
                            infoLabel: .email)
                 
-                CustomText(font: .system(size: 40),
-                           text: "SETTINGS.PASSWORD".localized(homeViewModel.localUser.password),
-                           infoLabel: .password,
-                           usePixelate: true,
-                           pixellate: pixellate)
+                
+                if(usePixelate) {
+                    PixelateView(text: homeViewModel.localUser.password, font: .system(size: 40), fontWeight: nil, pixelate: pixellate)
+                } else {
+                    CustomText(font: .system(size: 40),
+                               text: homeViewModel.localUser.password,
+                               infoLabel: .password)
+                }
+                
                 
                 Button {
-                    if pixellate == 1 {
-                        pixellate = 20
-                    } else {
-                        pixellate = 1
-                    }
+                    usePixelate.toggle()
                 } label: {
                     Text(showOrHide ? "SETTINGS.HIDE.PASSWORD".localized() : "SETTINGS.SHOW.PASSWORD".localized())
                 }
@@ -84,23 +85,23 @@ struct SettingsView: View {
                     
                     VStack(spacing: 16) {
                         
-                        CustomButton(text: homeViewModel.showGrid ? "SETTINGS.LIST".localized() : "SETTINGS.GRID".localized()) {
+                        GlassButtonView(text: homeViewModel.showGrid ? "SETTINGS.LIST".localized() : "SETTINGS.GRID".localized()) {
                             homeViewModel.showGrid.toggle()
                         }
                         
-                        CustomButton(text: "SETTINGS.LOGOUT".localized()) {
+                        GlassButtonView(text: "SETTINGS.LOGOUT".localized()) {
                             showAlert.toggle()
                         }
                     }
                     VStack(spacing: 16) {
-                        CustomButton(text: homeViewModel.orderAscending ? "SETTINGS.DESCENDENTING".localized() : "SETTINGS.ASCENDENTING".localized()) {
+                        GlassButtonView(text: homeViewModel.orderAscending ? "SETTINGS.DESCENDENTING".localized() : "SETTINGS.ASCENDENTING".localized()) {
                             homeViewModel.orderAscending.toggle()
                         }
                     }
                 }
                 .frame(width: 800)
                 .padding()
-                
+               
                 Chart(isPreviews ? mockFilms : homeViewModel.films) { film in
                     
                     SectorMark(
@@ -111,13 +112,12 @@ struct SettingsView: View {
                     .foregroundStyle(by: .value("Name", film.nome))
                     
                 }
-                .glassEffect(.regular, in: .containerRelative)
                 .chartLegend(position: .automatic,
                              alignment: .centerLastTextBaseline,
                              spacing: 15)
+                
                
             }
-            
             .frame(width: 800)
             .padding()
         }
@@ -142,39 +142,11 @@ struct SettingsView: View {
     }
  
     @ViewBuilder
-    private func CustomText(font: Font, fontWeight: Font.Weight? = nil, text: String, infoLabel: InfoLabel,usePixelate: Bool = false, pixellate: CGFloat = 1) -> some View {
-        
-
-        BubbleText(text: text, font: font, fontWeight: fontWeight)
-            .modifier(FocusModifier(isFocused: showFocus == infoLabel,
-                                    focused: $showFocus,
-                                    equals: infoLabel))
-        
-            .if(usePixelate, trasform: { view in
-                view
-                    .distortionEffect(
-                        .init(
-                            function: .init(library: .default, name: "pixellate"),
-                            arguments : [.float(pixellate)]
-                        ),
-                        maxSampleOffset: .zero)
-            })
-            
-        
-    }
-    
-    @ViewBuilder
-    private func CustomButton(text: String, action: @escaping ()->()) -> some View {
-        Button {
-           action()
-        } label: {
-            Text(text)
-                .frame(maxWidth: .infinity, minHeight: 60)
-        }
-        .buttonStyle(.plain)
-        .background(Color.gray.opacity(0.5))
-        .cornerRadius(13)
-        .glassEffect(.regular, in: .buttonBorder)
+    private func CustomText(font: Font, fontWeight: Font.Weight? = nil, text: String, infoLabel: InfoLabel) -> some View {
+        BubbleText(descriptionText: infoLabel.value, text: text, font: font)
+                .modifier(FocusModifier(isFocused: showFocus == infoLabel,
+                                        focused: $showFocus,
+                                        equals: infoLabel))
     }
     
     enum InfoLabel {
@@ -183,9 +155,23 @@ struct SettingsView: View {
         case cell
         case email
         case password
+        
+        var value: String {
+            switch self {
+            case .name:
+                return "SETTINGS.NAME".localized()
+            case .surname:
+                return "SETTINGS.SURNAME".localized()
+            case .cell:
+                return "SETTINGS.CELL".localized()
+            case .email:
+                return  "SETTINGS.EMAIL".localized()
+            case .password:
+                return "SETTINGS.PASSWORD".localized()
+            }
+        }
+        
     }
-    
- 
     
     private func formatStorage(_ mb: Double) -> String {
         guard mb > 1024 else {

@@ -26,7 +26,7 @@ struct FocusModifier<Value>: ViewModifier where Value: Hashable {
 }
 
 #Preview {
-    BubbleText(text: "Test", font: .body, fontWeight: .none)
+    BubbleText(descriptionText: "Title",text: "Test", font: .body)
        // .modifier(FocusModifier(isFocused: false, focused: , equals: <#T##Value#>))
     
 }

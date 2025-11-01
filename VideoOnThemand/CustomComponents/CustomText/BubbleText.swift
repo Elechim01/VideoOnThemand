@@ -9,57 +9,29 @@ import SwiftUI
 
 struct BubbleText: View {
     
+    private let textLeft: String
     private let text: String
     private let font: Font
-    private let fontWeight: Font.Weight?
 
     
-    init( text: String, font: Font, fontWeight: Font.Weight?) {
+    init(descriptionText: String,text: String, font: Font) {
+        self.textLeft = descriptionText
         self.font = font
-        self.fontWeight = fontWeight
         self.text = text
     }
     
 //    var isfocused: FocusState
     var body: some View {
-        Text(text)
-            .font(font)
-            .fontWeight(fontWeight)
-            .padding()
-            .glassEffect(.regular, in: .capsule)
+        DoubleText(textLeft: textLeft,
+                   rightText: text,
+                   fontTextLeft: font,
+                   fontTextRight: font)
         
     }
 }
 
 #Preview {
-    BubbleText(text: "Test", font: .body, fontWeight: .bold)
+    BubbleText(descriptionText: "Title", text: "Test", font: .body)
         .frame(width: 300, height: 400)
-        .background(.green)
+        .background(Color("Background"))
 }
-/*
- @ViewBuilder
- private func CustomText(font: Font, fontWeight: Font.Weight? = nil, text: String, infoLabel: InfoLabel,usePixelate: Bool = false, pixellate: CGFloat = 1) -> some View {
- 
- Text(text)
-
- .frame(height: 60)
- .modifier(CustomButtonModifier(isFocused: showFocus == infoLabel))
- .if(usePixelate, trasform: { view in
- view
- .distortionEffect(
- .init(
- function: .init(library: .default, name: "pixellate"),
- arguments : [.float(pixellate)]
- ),
- maxSampleOffset: .zero)
- })
- .focusable(true)
- .focused($showFocus, equals: infoLabel)
- .padding(.horizontal)
- .if(!usePixelate, trasform: { view in
- view
- 
- })
- }
- */
-

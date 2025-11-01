@@ -91,11 +91,7 @@ struct HomeView: View {
                 homeviewModel.showAlert.toggle()
             }
         })
-        
-        
     }
-    
-
    
     @ViewBuilder
     private func horizontalLayout() -> some View {
