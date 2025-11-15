@@ -3,12 +3,14 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 55;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C40C42DF2EB7B9CC008C77C3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C40C42DE2EB7B9CC008C77C3 /* GoogleService-Info.plist */; };
 		C4640A5F29BD541C008684A1 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4640A5E29BD541B008684A1 /* Enums.swift */; };
 		C47E10822A41DFCD004E1567 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = C47E10812A41DFCD004E1567 /* Shaders.metal */; };
+		C4AB2F002EB79AC200DAE7BF /* CachedAsyncImage in Frameworks */ = {isa = PBXBuildFile; productRef = C4AB2EFF2EB79AC200DAE7BF /* CachedAsyncImage */; };
 		C4C044522E4FA9B700E947F4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C4C044502E4FA9B700E947F4 /* Localizable.strings */; };
 		C4C044572E5090AB00E947F4 /* StringExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C044562E5090AB00E947F4 /* StringExt.swift */; };
 		C4C044592E509E1F00E947F4 /* ViewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C044582E509E1F00E947F4 /* ViewExt.swift */; };
@@ -23,7 +25,6 @@
 		C4C7A7A428A2A573001CB803 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C7A7A328A2A573001CB803 /* LoginView.swift */; };
 		C4C7A7A628A2A92C001CB803 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C7A7A528A2A92C001CB803 /* Extensions.swift */; };
 		C4C7A7A928A2AC8C001CB803 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = C4C7A7A828A2AC8C001CB803 /* Alamofire */; };
-		C4C7A7AB28A2BBDB001CB803 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C4C7A7AA28A2BBDB001CB803 /* GoogleService-Info.plist */; };
 		C4C7A7AE28A2BD5E001CB803 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = C4C7A7AD28A2BD5E001CB803 /* FirebaseAnalytics */; };
 		C4C7A7B228A2BD5E001CB803 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = C4C7A7B128A2BD5E001CB803 /* FirebaseAuth */; };
 		C4C7A7B428A2BD5E001CB803 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = C4C7A7B328A2BD5E001CB803 /* FirebaseFirestore */; };
@@ -43,6 +44,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C40C42DE2EB7B9CC008C77C3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C4524EDD2A6E798900B22C1C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		C4640A5E29BD541B008684A1 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		C47E10812A41DFCD004E1567 /* Shaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
@@ -62,7 +64,6 @@
 		C4C7A7A128A2A4CF001CB803 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		C4C7A7A328A2A573001CB803 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		C4C7A7A528A2A92C001CB803 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		C4C7A7AA28A2BBDB001CB803 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C4C7A7BB28A2C298001CB803 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		C4C7A7BD28A40278001CB803 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		C4C7A7BF28A50694001CB803 /* FilmThumbnailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmThumbnailView.swift; sourceTree = "<group>"; };
@@ -77,6 +78,10 @@
 		C4F2537F2E7E08C800E58300 /* Appunti.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Appunti.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		C40C42DD2EB7B9AD008C77C3 /* VideoOnTheMandGoole */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = VideoOnTheMandGoole; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
+
 /* Begin PBXFrameworksBuildPhase section */
 		C4C7A78428A2A08B001CB803 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
@@ -86,6 +91,7 @@
 				C4C7A7BA28A2BD5E001CB803 /* FirebaseStorageCombine-Community in Frameworks */,
 				C4C7A7A928A2AC8C001CB803 /* Alamofire in Frameworks */,
 				C4C7A7B428A2BD5E001CB803 /* FirebaseFirestore in Frameworks */,
+				C4AB2F002EB79AC200DAE7BF /* CachedAsyncImage in Frameworks */,
 				C4C7A7B828A2BD5E001CB803 /* FirebaseStorage in Frameworks */,
 				C4C7A7B228A2BD5E001CB803 /* FirebaseAuth in Frameworks */,
 			);
@@ -141,6 +147,7 @@
 		C4C7A78928A2A08B001CB803 /* VideoOnThemand */ = {
 			isa = PBXGroup;
 			children = (
+				C40C42DD2EB7B9AD008C77C3 /* VideoOnTheMandGoole */,
 				C4201C2C2EA3FEE700766FB5 /* CustomComponents */,
 				C4CC5D072E5DB0D300C4B007 /* Protocol */,
 				C4C044552E50909D00E947F4 /* Extension */,
@@ -150,10 +157,10 @@
 				C4C7A79928A2A146001CB803 /* ViewModel */,
 				C4C7A79828A2A13C001CB803 /* View */,
 				C4C7A78A28A2A08B001CB803 /* VideoOnThemandApp.swift */,
-				C4C7A7AA28A2BBDB001CB803 /* GoogleService-Info.plist */,
 				C4C7A7C328A50868001CB803 /* test.mp4 */,
 				C4C7A78E28A2A08D001CB803 /* Assets.xcassets */,
 				C4C7A79028A2A08D001CB803 /* Preview Content */,
+				C40C42DE2EB7B9CC008C77C3 /* GoogleService-Info.plist */,
 			);
 			path = VideoOnThemand;
 			sourceTree = "<group>";
@@ -274,6 +281,9 @@
 			);
 			dependencies = (
 			);
+			fileSystemSynchronizedGroups = (
+				C40C42DD2EB7B9AD008C77C3 /* VideoOnTheMandGoole */,
+			);
 			name = VideoOnThemand;
 			packageProductDependencies = (
 				C4C7A7A828A2AC8C001CB803 /* Alamofire */,
@@ -282,6 +292,7 @@
 				C4C7A7B328A2BD5E001CB803 /* FirebaseFirestore */,
 				C4C7A7B728A2BD5E001CB803 /* FirebaseStorage */,
 				C4C7A7B928A2BD5E001CB803 /* FirebaseStorageCombine-Community */,
+				C4AB2EFF2EB79AC200DAE7BF /* CachedAsyncImage */,
 			);
 			productName = VideoOnThemand;
 			productReference = C4C7A78728A2A08B001CB803 /* VideoOnThemand.app */;
@@ -315,6 +326,7 @@
 			packageReferences = (
 				C4C7A7A728A2AC8C001CB803 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				C4C7A7AC28A2BD5E001CB803 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				C4AB2EFE2EB79AC200DAE7BF /* XCLocalSwiftPackageReference "../CachedAsyncImage" */,
 			);
 			productRefGroup = C4C7A78828A2A08B001CB803 /* Products */;
 			projectDirPath = "";
@@ -331,7 +343,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C4C044522E4FA9B700E947F4 /* Localizable.strings in Resources */,
-				C4C7A7AB28A2BBDB001CB803 /* GoogleService-Info.plist in Resources */,
+				C40C42DF2EB7B9CC008C77C3 /* GoogleService-Info.plist in Resources */,
 				C4C7A79228A2A08D001CB803 /* Preview Assets.xcassets in Resources */,
 				C4C7A78F28A2A08D001CB803 /* Assets.xcassets in Resources */,
 				C4C7A7C428A50C6B001CB803 /* test.mp4 in Resources */,
@@ -584,6 +596,13 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCLocalSwiftPackageReference section */
+		C4AB2EFE2EB79AC200DAE7BF /* XCLocalSwiftPackageReference "../CachedAsyncImage" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../CachedAsyncImage;
+		};
+/* End XCLocalSwiftPackageReference section */
+
 /* Begin XCRemoteSwiftPackageReference section */
 		C4C7A7A728A2AC8C001CB803 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
@@ -604,6 +623,10 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		C4AB2EFF2EB79AC200DAE7BF /* CachedAsyncImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CachedAsyncImage;
+		};
 		C4C7A7A828A2AC8C001CB803 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = C4C7A7A728A2AC8C001CB803 /* XCRemoteSwiftPackageReference "Alamofire" */;
