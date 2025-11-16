@@ -17,7 +17,6 @@ struct ContentView: View {
     
     var body: some View {
         
-        
         if(loginViewModel.localPage == .Login){
             LoginView()
                 .environmentObject(loginViewModel)
@@ -27,7 +26,6 @@ struct ContentView: View {
            PageManager()
                 .environmentObject(loginViewModel)
                 .environmentObject(homeViewModel)
-            
         }
         
     }

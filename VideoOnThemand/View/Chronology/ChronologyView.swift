@@ -50,6 +50,8 @@ struct ChronologyView: View {
                     Text("Seleziona un film 🎬")
                         .foregroundStyle(.secondary)
                         .font(.title2)
+                        .padding()
+                        .glassEffect(.regular,in: .capsule)
                 }
             }
         }
@@ -66,46 +68,6 @@ struct ChronologyView: View {
     }
 }
 
-
-struct ChronologyCardView: View {
-    let chronology: Chronology
-
-    var body: some View {
-        VStack {
-            Rectangle()
-                .fill(Color.black.opacity(0.2))
-                .overlay(
-                    Text(chronology.filmName)
-                        .font(.title3)
-                        .bold()
-                        .multilineTextAlignment(.center)
-                        .padding()
-                )
-                .cornerRadius(12)
-        }
-    }
-}
-
-struct FilmDetailView: View {
-    let chronology: Chronology
-
-    var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            Text("Titolo: \(chronology.filmName)")
-                .font(.title2)
-                .bold()
-            Text("Data: \(chronology.dateTime)")
-                .font(.headline)
-        }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .padding()
-        .background(Color.gray.opacity(0.1))
-        .cornerRadius(12)
-        .ignoresSafeArea()
-    }
-}
-
-
 #Preview {
     ChronologyView(chronologyViewModel: .init(localUser: Utente(
         id: "zglR4HvR0sP3KEqaRGL8Ma5cx5t2",
@@ -116,4 +78,6 @@ struct FilmDetailView: View {
         password: "",
         cellulare: "")
     ))
+    .background(Color("Background"))
+    .ignoresSafeArea()
 }

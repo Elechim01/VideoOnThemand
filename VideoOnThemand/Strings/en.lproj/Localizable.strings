@@ -5,11 +5,11 @@
   Created by Michele Manniello on 15/08/25.
   
 */
-"SETTINGS.NAME" = "Name: %@";
-"SETTINGS.SURNAME" = "Surname: %@";
-"SETTINGS.CELL" = "Phone: %@";
-"SETTINGS.EMAIL" = "Email: %@";
-"SETTINGS.PASSWORD" = "Password: %@";
+"SETTINGS.NAME" = "Name:";
+"SETTINGS.SURNAME" = "Surname:";
+"SETTINGS.CELL" = "Phone:";
+"SETTINGS.EMAIL" = "Email:";
+"SETTINGS.PASSWORD" = "Password:";
 "SETTINGS.HIDE.PASSWORD" = "Hide password";
 "SETTINGS.SHOW.PASSWORD" = "Show password";
 "SETTINGS.SPACE" = "Space";
@@ -21,3 +21,15 @@
 "SETTINGS.DESCENDING" = "Switch to descending";
 "SETTINGS.ASCENDING" = "Switch to ascending";
 
+//HOME
+"HOME.PAGE.PICKER" = "Page";
+"HOME.PAGE.VIDEO" = "Video";
+"HOME.PAGE.IMPOSTAZIONI" = "Impostazioni";
+"HOME.PAGE.CRONOLOGIA" = "Cronologia";
+"HOME.TITLE" = "I tuoi video:";
+"HOME.ALERT.LOGOUT.TITLE" = "Sei Sicuro di voler effettuare il Logout?";
+"HOME.ALERT.LOGOUT.CANCEL" = "Annulla";
+"HOME.ALERT.LOGOUT.CONFIRM" = "Conferma";
+
+"CHRONOLOGY.TITLE" = "Title";
+"CHRONOLOGY.DATE" = "Date";
