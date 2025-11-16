@@ -12,6 +12,7 @@ struct PageManager: View {
     @EnvironmentObject var loginViewModel: LoginViewModel
     @EnvironmentObject var homeviewModel: HomeViewModel
     @Namespace private var focusNamespace
+    @Environment(\.colorScheme) var colorScheme
     
     init(page: SectionPages = .video) {
         _page = State(initialValue: page)
@@ -50,7 +51,7 @@ struct PageManager: View {
             }
             .padding()
         }
-        .background(Color("T1").ignoresSafeArea())
+        .background(AppColors.backgroundGradient(for:colorScheme).ignoresSafeArea())
         .focusScope(focusNamespace)
     }
     

@@ -91,11 +91,7 @@ struct HomeView: View {
                 homeviewModel.showAlert.toggle()
             }
         })
-        
-        
     }
-    
-
    
     @ViewBuilder
     private func horizontalLayout() -> some View {
@@ -125,9 +121,6 @@ struct HomeView: View {
                         FilmThumbnailView(film: $film)
                         .environmentObject(homeviewModel)
                         .frame(maxWidth: .infinity)
-                       
-                        
-                      
                 }
             }
             .padding(.horizontal)

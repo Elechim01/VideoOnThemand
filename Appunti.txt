@@ -1,3 +1,9 @@
+
+Fetch dei dati su Firebase
+
+!! Scrivere le struct :) 
+
+
  New Raccorda -> Cronologia
  Documenti ID: auto
  contiene :
@@ -5,3 +11,6 @@
     - data e ora della riproduzione "?nome?"
     - nome film : nome film che sto riproducendo
     - idFilm: ID Del film che ho riprodotto
+    
+    
+    
