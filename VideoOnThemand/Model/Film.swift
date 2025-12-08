@@ -18,7 +18,6 @@ struct Film: Identifiable, Codable {
     var url: String
     var thumbnail: String
     var size: Double
-    var localImage: URL?
     
     init(){
         id = UUID().uuidString

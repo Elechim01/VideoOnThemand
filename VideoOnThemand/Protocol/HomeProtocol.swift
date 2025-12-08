@@ -12,10 +12,9 @@ import FirebaseStorage
 protocol FirebaseProtocol {
     func getFilmListener(firestore:Firestore, stream: inout ListenerRegistration?, localUser:String, listener: @escaping (QuerySnapshot?,Error?) -> Void)
     func getUserListener(firestore:Firestore,email: String, password:String,id: String ,listener: @escaping (QuerySnapshot?,Error?) -> Void)
-    func getThumbNail(storage:Storage,film: Film ,succes: @escaping (String) -> Void, failure: @escaping(Error) -> Void)
+   // func getThumbNail(storage:Storage,film: Film ,succes: @escaping (String) -> Void, failure: @escaping(Error) -> Void)
     
     func updatePlayDate(firestore: Firestore, film: Film,localUser:String, onError: @escaping(Error)->())
-    
     func getChronologyListener(firestore: Firestore, localUser:String, stream: inout ListenerRegistration?, listener: @escaping (QuerySnapshot?,Error?) -> Void)
 
 }
@@ -31,6 +30,7 @@ extension FirebaseProtocol {
         firestore.collection("Utenti").whereField("email", isEqualTo: email).whereField("password",isEqualTo: password).getDocuments(completion: listener)
     }
     
+   /*
     func getThumbNail(storage:Storage, film: Film, succes: @escaping (String) -> Void, failure: @escaping(Error) -> Void) {
         
         let localPathReference = Extensions.getDocumentsDirectory().appendingPathComponent("thumbnail/\(film.nome.split { $0 == "." }[0]).png")
@@ -39,7 +39,10 @@ extension FirebaseProtocol {
         do {
             try FileManager.default.createDirectory(atPath: localPathString, withIntermediateDirectories: true,attributes: nil)
             print(localPathReference)
-            let httpsReference = storage.reference(forURL: film.thumbnail)
+            print(film.thumbnail)
+            let noExtension  = film.nome.split(separator: ".").first ?? ""
+            
+            let httpsReference = storage.reference().child("zglR4HvR0sP3KEqaRGL8Ma5cx5t2/thumbnail_\(noExtension).png")
             httpsReference.write(toFile: localPathReference) { url, error in
                 if let error {
                     print("!Error to fetch")
@@ -59,6 +62,7 @@ extension FirebaseProtocol {
             print(error)
         }
     }
+    */
     
     func updatePlayDate(firestore: Firestore, film: Film,localUser:String, onError: @escaping(Error)->()) {
         do {
