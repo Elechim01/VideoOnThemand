@@ -24,7 +24,6 @@
 		C4C044592E509E1F00E947F4 /* ViewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C044582E509E1F00E947F4 /* ViewExt.swift */; };
 		C4C7A78B28A2A08B001CB803 /* VideoOnThemandApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C7A78A28A2A08B001CB803 /* VideoOnThemandApp.swift */; };
 		C4C7A78D28A2A08B001CB803 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C7A78C28A2A08B001CB803 /* ContentView.swift */; };
-		C4C7A78F28A2A08D001CB803 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4C7A78E28A2A08D001CB803 /* Assets.xcassets */; };
 		C4C7A79228A2A08D001CB803 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4C7A79128A2A08D001CB803 /* Preview Assets.xcassets */; };
 		C4C7A79B28A2A1A9001CB803 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C7A79A28A2A1A9001CB803 /* LoginViewModel.swift */; };
 		C4C7A79E28A2A254001CB803 /* Film.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C7A79D28A2A254001CB803 /* Film.swift */; };
@@ -46,6 +45,7 @@
 		C4CC5D0E2E5DB42C00C4B007 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CC5D0D2E5DB42C00C4B007 /* FirebaseManager.swift */; };
 		C4CC5D142E5DC66800C4B007 /* PageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CC5D132E5DC66800C4B007 /* PageManager.swift */; };
 		C4D1504B2A18D91800186D06 /* HomeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D1504A2A18D91800186D06 /* HomeProtocol.swift */; };
+		C4E4BBBC2F142F5D00C18E02 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4C7A78E28A2A08D001CB803 /* Assets.xcassets */; };
 		C4E532612E5CC25800AEADBB /* Chronology.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E532602E5CC25800AEADBB /* Chronology.swift */; };
 		C4E532652E5CCE1000AEADBB /* ChronologyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E532632E5CCE1000AEADBB /* ChronologyView.swift */; };
 /* End PBXBuildFile section */
@@ -94,7 +94,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		C40C42DD2EB7B9AD008C77C3 /* VideoOnTheMandGoole */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = VideoOnTheMandGoole; sourceTree = "<group>"; };
+		C40C42DD2EB7B9AD008C77C3 /* VideoOnTheMandGoogle */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = VideoOnTheMandGoogle; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -218,7 +218,7 @@
 		C4C7A78928A2A08B001CB803 /* VideoOnThemand */ = {
 			isa = PBXGroup;
 			children = (
-				C40C42DD2EB7B9AD008C77C3 /* VideoOnTheMandGoole */,
+				C40C42DD2EB7B9AD008C77C3 /* VideoOnTheMandGoogle */,
 				C4201C2C2EA3FEE700766FB5 /* CustomComponents */,
 				C4CC5D072E5DB0D300C4B007 /* Protocol */,
 				C4C044552E50909D00E947F4 /* Extension */,
@@ -352,7 +352,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				C40C42DD2EB7B9AD008C77C3 /* VideoOnTheMandGoole */,
+				C40C42DD2EB7B9AD008C77C3 /* VideoOnTheMandGoogle */,
 			);
 			name = VideoOnThemand;
 			packageProductDependencies = (
@@ -414,7 +414,7 @@
 				C4C044522E4FA9B700E947F4 /* Localizable.strings in Resources */,
 				C40C42DF2EB7B9CC008C77C3 /* GoogleService-Info.plist in Resources */,
 				C4C7A79228A2A08D001CB803 /* Preview Assets.xcassets in Resources */,
-				C4C7A78F28A2A08D001CB803 /* Assets.xcassets in Resources */,
+				C4E4BBBC2F142F5D00C18E02 /* Assets.xcassets in Resources */,
 				C4C7A7C428A50C6B001CB803 /* test.mp4 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

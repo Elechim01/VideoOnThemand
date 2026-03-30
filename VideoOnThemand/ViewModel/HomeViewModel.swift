@@ -13,17 +13,17 @@ import AVKit
 
 class HomeViewModel: ObservableObject {
     
-    //     Recupero film e altro
+    // Recupero film e altro
     @Published var films : [Film] = []
     @Published var localUser : Utente = Utente()
-    //    Memorizzo la password, l'email e l'id
+    // Memorizzo la password, l'email e l'id
     @AppStorage("Password") var password = ""
     @AppStorage("Email") var email = ""
     @AppStorage("IDUser") var idUser = ""
     @AppStorage("ShowGrid") var storageGrid = false
     @AppStorage("Order") var storageAscendindOrder = false
     
-    //    MARK: Alert
+    // MARK: Alert
     @Published var showAlert: Bool = false
     @Published var alertMessage : String = ""
     @Published var showGrid = false {
@@ -35,7 +35,12 @@ class HomeViewModel: ObservableObject {
     
     @Published var orderAscending = false {
         didSet {
-            self.films =  self.films.sorted(by:{ $0.nome.compare($1.nome,options: .caseInsensitive) ==  (self.orderAscending ? .orderedAscending : .orderedDescending) })
+            // ----- SORT BY DATE -----
+            self.films = self.films.sorted {
+                let d0 = $0.data ?? Date.distantPast
+                let d1 = $1.data ?? Date.distantPast
+                return orderAscending ? d0 < d1 : d0 > d1
+            }
             storageAscendindOrder = orderAscending
         }
     }
@@ -56,7 +61,7 @@ class HomeViewModel: ObservableObject {
     
     init(){
         firestore =  FirebaseManager.shared.firestore
-       // firebaseStorage = FirebaseManager.shared.firebaseStorage
+        // firebaseStorage = FirebaseManager.shared.firebaseStorage
         showGrid = storageGrid
         orderAscending = storageAscendindOrder
     }
@@ -83,7 +88,7 @@ class HomeViewModel: ObservableObject {
 
 extension HomeViewModel: FirebaseProtocol {
     func recuperoFilm(endidng:@escaping () async ->()){
-        //     MARK: For test
+        // MARK: For test
         getFilmListener(firestore: firestore,stream: &stream ,localUser: localUser.id) { [weak self]
             querySnapshot, error in
             guard let self = self else { return }
@@ -106,16 +111,14 @@ extension HomeViewModel: FirebaseProtocol {
                         break
                     }
                     
-                    let data = document.data()
-                    if let film = Film.getFilm(json: data) {
+                    if  let film =  try? document.data(as: Film.self) {
                         self.films.append(film)
                     }
                     count+=1
                 }
 #else
                 for document in querySnapshot!.documents{
-                    let data = document.data()
-                    if let film = Film.getFilm(json: data) {
+                    if  let film =  try? document.data(as: Film.self) {
                         self.films.append(film)
                     }
                 }
@@ -125,7 +128,13 @@ extension HomeViewModel: FirebaseProtocol {
             self.films.forEach { print("\($0.nome)")  }
 #endif
             
-            self.films =  self.films.sorted(by:{ $0.nome.compare($1.nome,options: .caseInsensitive) ==  (self.orderAscending ? .orderedAscending : .orderedDescending) })
+            // ----- SORT BY DATE AFTER FETCH -----
+            self.films = self.films.sorted {
+                let d0 = $0.data ?? Date.now
+                let d1 = $1.data ?? Date.now
+                return self.orderAscending ? d0 < d1 : d0 > d1
+            }
+            
             Task{
                 await endidng()
             }
@@ -172,11 +181,11 @@ extension HomeViewModel: FirebaseProtocol {
                     if(querySnapshot!.documents.first == nil){
                         return
                     }
-                    let data = querySnapshot!.documents.first!.data()
-                    if let user = Utente.getUser(json: data) {
+                    
+                    if let user =  try? querySnapshot!.documents.first!.data(as: Utente.self) {
                         self.localUser = user
                     }
-                    //                    per la pagina
+                    
                     Task{
                         await ending?()
                     }

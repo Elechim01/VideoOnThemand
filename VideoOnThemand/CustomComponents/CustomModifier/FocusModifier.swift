@@ -18,7 +18,7 @@ struct FocusModifier<Value>: ViewModifier where Value: Hashable {
            // .focused($showFocus, equals: infoLabel)
             .focused(focused, equals: equals)
             .padding(.horizontal, isFocused ? 20: 10)
-            .background(isFocused ? Color("Green").opacity(0.9) : .clear)
+            .background(isFocused ? Color.green.opacity(0.9) : .clear)
             .clipShape(Capsule())
             .padding(.horizontal, isFocused ? 0 : 0)
         
