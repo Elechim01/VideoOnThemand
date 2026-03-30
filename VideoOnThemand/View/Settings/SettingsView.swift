@@ -60,17 +60,14 @@ struct SettingsView: View {
                 } label: {
                     Text(showOrHide ? "SETTINGS.HIDE.PASSWORD".localized() : "SETTINGS.SHOW.PASSWORD".localized())
                 }
-                .glassEffect(.regular, in: .capsule)
                 
                 
                 Text("\("SETTINGS.SPACE".localized()) \(formatStorage(homeViewModel.totalSize)) / \(formatStorage(homeViewModel.totalSizeFilm))")
                     .padding()
-                    .glassEffect(.regular, in: .capsule)
                     .padding(.top)
                 
                 Text("\("SETTINGS.FREE".localized()) \(formatStorage(homeViewModel.totalSize - homeViewModel.totalSizeFilm))")
                     .padding()
-                    .glassEffect(.regular, in: .capsule)
                     .padding(.top)
             }
             

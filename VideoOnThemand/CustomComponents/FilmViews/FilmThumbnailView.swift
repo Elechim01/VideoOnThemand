@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CachedAsyncImage
 
 struct FilmThumbnailView: View {
     @EnvironmentObject var homeviewModel: HomeViewModel
@@ -25,7 +26,21 @@ struct FilmThumbnailView: View {
                                 selection = film.id
                             }
                     }else{
-                        AsyncImage(url: film.localImage ?? URL(string: film.thumbnail)) { image  in
+                        
+                        CachedAsyncImageView(url: URL(string: film.thumbnail)) { image in
+                            image
+                                .resizable()
+                        } Placeholder: {
+                            Color.gray.opacity(0.3)
+                        }
+                        .frame(width: 300)
+                        .aspectRatio(16/9, contentMode: .fit)
+                        .onLongPressGesture {
+                            selection = film.id
+                        }
+                        
+                       /*
+                        AsyncImage(url: ) { image  in
                             image
                                 .resizable()
                         } placeholder: {
@@ -35,12 +50,11 @@ struct FilmThumbnailView: View {
                         .aspectRatio(16/9, contentMode: .fit)
                         .onLongPressGesture {
                             selection = film.id
-                        }
+                        }*/
                         
                     }
                 }
                 .buttonStyle(CardButtonStyle())
-                .glassEffect(.regular, in: .buttonBorder)
                 .padding()
                 
             
@@ -48,7 +62,6 @@ struct FilmThumbnailView: View {
                 .frame(width: 200)
                 .font(.caption)
                 .padding()
-                .glassEffect(.regular, in: .buttonBorder)
             
         }
        

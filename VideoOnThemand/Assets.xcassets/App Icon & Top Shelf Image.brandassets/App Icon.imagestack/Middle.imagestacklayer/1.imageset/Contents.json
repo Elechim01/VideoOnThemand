@@ -1,27 +1,27 @@
 {
   "images" : [
     {
-      "filename" : "0C 1.png",
+      "filename" : "58.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "0C 2.png",
+      "filename" : "87.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "0C 3.png",
+      "filename" : "40.png",
       "idiom" : "universal",
       "scale" : "3x"
     },
     {
-      "filename" : "0C.png",
+      "filename" : "80.png",
       "idiom" : "tv",
       "scale" : "1x"
     },
     {
-      "filename" : "0C 4.png",
+      "filename" : "120.png",
       "idiom" : "tv",
       "scale" : "2x"
     }
