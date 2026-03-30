@@ -98,3 +98,11 @@ struct VideoPlayerView_Previews: PreviewProvider {
         VideoPlayerView(film: Film())
     }
 }
+
+///
+/// guard let url = URL(string: "http://192.168.1.100:3000/stream/1764000526321-Huntik_-_1x21_-_L_amuleto_della_volonta_.mp4") else { return }
+///let accessToken =  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NjQwMjM5ODAsImV4cCI6MTc2NDAyNzU4MH0.U7cYiAQ4RxDrHHwJTylvjM6IyY0uhKRL1vsLuoTopFE"
+///llet headers = [    "Authorization": "Bearer \(accessToken)"]
+///let asset = AVURLAsset(url: url, options: ["AVURLAssetHTTPHeaderFieldsKey": headers])
+///let playerItem = AVPlayerItem(asset: asset)
+

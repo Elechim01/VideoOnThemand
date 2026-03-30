@@ -59,16 +59,9 @@ struct HomeView: View {
                 if homeviewModel.localUser.isEmply{
                     Task {
                         homeviewModel.recuperoUtente(email: homeviewModel.email, password: homeviewModel.password, id: homeviewModel.idUser)   {
-                            await MainActor.run {
-                                
-                                self.showProgressView = true
-                            }
                             homeviewModel.recuperoFilm(endidng: {
                                 await MainActor.run {
                                     self.showProgressView = false
-                                }
-                                Task(priority: .background) {
-                                    homeviewModel.recuperoThumbnail()
                                 }
                             })
                         }
@@ -127,7 +120,6 @@ struct HomeView: View {
         }
     }
     
-  
     
 }
 

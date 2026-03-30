@@ -48,7 +48,7 @@ struct Utente: Identifiable, Codable {
         self.password = password
         self.cellulare = cellulare
     }
-    
+    /*
     func getData() -> [String: Any]? {
         do {
             let data = try JSONEncoder().encode(self)
@@ -67,7 +67,7 @@ struct Utente: Identifiable, Codable {
         } catch  {
             return nil
         }
-    }
+    }*/
     
 }
 

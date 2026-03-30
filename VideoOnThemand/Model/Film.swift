@@ -7,6 +7,7 @@
 
 import UIKit
 import SwiftUI
+import FirebaseFirestore
 
 
 struct Film: Identifiable, Codable {
@@ -18,7 +19,7 @@ struct Film: Identifiable, Codable {
     var url: String
     var thumbnail: String
     var size: Double
-    var localImage: URL?
+    var data: Date?
     
     init(){
         id = UUID().uuidString
@@ -27,6 +28,7 @@ struct Film: Identifiable, Codable {
         url = ""
         thumbnail =  ""
         size = 0
+        data = .now
         
     }
     
@@ -37,6 +39,7 @@ struct Film: Identifiable, Codable {
         url = ""
         thumbnail = ""
         size = 45
+        data = .now
     }
     
     
@@ -52,9 +55,10 @@ struct Film: Identifiable, Codable {
         self.url = url
         self.thumbnail = thmbnail
         self.size = size
+        self.data = .now
         
     }
-    
+    /*
     func getData() -> [String:Any]? {
         do {
             let data = try JSONEncoder().encode(self)
@@ -64,6 +68,7 @@ struct Film: Identifiable, Codable {
             return nil
         }
     }
+   
     
     static func getFilm(json: [String: Any]) -> Film? {
         do {
@@ -75,6 +80,7 @@ struct Film: Identifiable, Codable {
             return nil
         }
     }
+     */
     
 }
 
