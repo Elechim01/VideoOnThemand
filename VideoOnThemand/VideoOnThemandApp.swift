@@ -21,9 +21,17 @@ class AppDelegate: NSObject,UIApplicationDelegate {
 struct VideoOnThemandApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     
+    @StateObject private var coordinator = Coordinator()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(coordinator)
+                .onAppear {
+                    Task {
+                        await coordinator.restoreSession()
+                    }
+                }
         }
     }
 }
