@@ -1,13 +1,20 @@
 {
   "images" : [
     {
-      "filename" : "Rectangle TSI.png",
       "idiom" : "tv",
       "scale" : "1x"
     },
     {
-      "filename" : "Rectangle TSI2x.png",
       "idiom" : "tv",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "31X 1.png",
+      "idiom" : "tv-marketing",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "tv-marketing",
       "scale" : "2x"
     }
   ],

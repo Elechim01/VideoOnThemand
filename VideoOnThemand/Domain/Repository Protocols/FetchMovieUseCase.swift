@@ -14,8 +14,8 @@ class FetchMovieUseCase {
         self.movieRepository = movieRepository
     }
     
-    func execute(localUserId: String) async throws -> AsyncStream<[Film]> {
-        return try await movieRepository.loadFilms(localUserId: localUserId)
+    func execute(localUserId: String) async -> AsyncThrowingStream<[Film],Error>  {
+        return await movieRepository.loadFilms(localUserId: localUserId)
         
     }
 }

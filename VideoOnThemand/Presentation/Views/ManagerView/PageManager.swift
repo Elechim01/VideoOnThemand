@@ -59,12 +59,6 @@ struct PageManager: View {
         .background(AppColors.backgroundGradient(for:colorScheme).ignoresSafeArea())
         .focusScope(focusNamespace)
     }
-    
-    enum SectionPages {
-        case video
-        case impostazioni
-        case cronologia
-    }
 }
 
 #Preview {

@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Charts
+import ElechimCore
 
 struct SettingsView: View {
     
@@ -64,11 +65,11 @@ struct SettingsView: View {
                 }
                 
                 
-                Text("\("SETTINGS.SPACE".localized()) \(formatStorage(homeViewModel.totalSize)) / \(formatStorage(homeViewModel.totalSizeFilm))")
+                Text("\("SETTINGS.SPACE".localized()) \(Utils.formatStorage(homeViewModel.totalSize)) / \(Utils.formatStorage (homeViewModel.totalSizeFilm))")
                     .padding()
                     .padding(.top)
                 
-                Text("\("SETTINGS.FREE".localized()) \(formatStorage(homeViewModel.totalSize - homeViewModel.totalSizeFilm))")
+                Text("\("SETTINGS.FREE".localized()) \(Utils.formatStorage(homeViewModel.totalSize - homeViewModel.totalSizeFilm))")
                     .padding()
                     .padding(.top)
             }
@@ -125,12 +126,9 @@ struct SettingsView: View {
             Button("HOME.ALERT.LOGOUT.CANCEL".localized(),role: .cancel){
                 showAlert = false
             }
-            
             Button("HOME.ALERT.LOGOUT.CONFIRM",role: .destructive){
-                
                 coordinator.logout()
                 showAlert.toggle()
-                
             }
         }
     }
@@ -165,15 +163,6 @@ struct SettingsView: View {
             }
         }
         
-    }
-    
-    private func formatStorage(_ mb: Double) -> String {
-        guard mb > 1024 else {
-            return String.twoDecimalMB(number: mb)
-        }
-        let gb = mb/1024
-        
-        return String.twoDecimalGB(number: gb)
     }
     
 }

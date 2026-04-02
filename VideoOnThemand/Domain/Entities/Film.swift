@@ -10,8 +10,7 @@ import SwiftUI
 import FirebaseFirestore
 
 
-struct Film: Identifiable, Codable {
-    
+struct Film: Identifiable, Codable, Comparable {
     //  MARK:  ID Recuperato da query firebase
     var id: String
     var idUtente: String
@@ -58,6 +57,12 @@ struct Film: Identifiable, Codable {
         self.data = .now
         
     }
+    
+    static func < (lhs: Film, rhs: Film) -> Bool {
+        let d0 = lhs.data ?? Date.now
+        let d1 = rhs.data ?? Date.now
+        return d0 < d1
+    }
 }
 
 var mockFilms: [Film] {
@@ -66,6 +71,5 @@ var mockFilms: [Film] {
         array.append(Film(nome: "OnePiece_Ep_\(i)_SUB_ITA.mp4"))
     }
     return array
-    
 }
 

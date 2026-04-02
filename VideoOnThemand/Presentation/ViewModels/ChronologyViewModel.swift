@@ -28,8 +28,8 @@ class ChronologyViewModel: ObservableObject {
     func loadChronology() async {
         isLoading = true
         do {
-            let stream = try await fetchChronologyUseCase.execute(localUser: sessionManager.currentUser?.id ?? "")
-            for await listChronology in stream {
+            let stream = await fetchChronologyUseCase.execute(localUser: sessionManager.currentUser?.id ?? "")
+            for try await listChronology in stream {
                 isLoading = false
                 chronologyList = listChronology.sorted(by: { $0.date > $1.date })
             }

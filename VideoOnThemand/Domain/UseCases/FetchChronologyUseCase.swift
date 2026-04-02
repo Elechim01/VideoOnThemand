@@ -6,6 +6,7 @@
 //
 
 import Foundation
+
 class FetchChronologyUseCase {
     private let chronologyRepository: ChronologyRepositoryProtocol
     
@@ -13,7 +14,7 @@ class FetchChronologyUseCase {
         self.chronologyRepository = chronologyRepository
     }
     
-    func execute(localUser: String) async throws -> AsyncStream<[Chronology]> {
-        return try await chronologyRepository.loadChronology(localUser: localUser)
+    func execute(localUser: String) async  ->  AsyncThrowingStream<[Chronology], Error> {
+        return  await chronologyRepository.loadChronology(localUser: localUser)
     }
 }

@@ -94,12 +94,12 @@ class HomeViewModel: ObservableObject {
     func recuperoFilm() async {
         self.showProgressView = true
         do {
-            let stream =  try await fetchMovieUseCase.execute(localUserId: sessionManager.currentUser?.id ?? "")
-            for await films in stream {
+            let stream = await fetchMovieUseCase.execute(localUserId: sessionManager.currentUser?.id ?? "")
+            for try await films in stream {
 #if DEBUG
                 films.forEach { print("\($0.nome)")  }
 #endif
-                #warning("Implementare Comparable")
+#warning("Implementare Comparable")
                 self.showProgressView = false
                 self.films = films.sorted {
                     let d0 = $0.data ?? Date.now

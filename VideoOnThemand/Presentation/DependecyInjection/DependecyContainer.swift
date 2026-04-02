@@ -78,5 +78,4 @@ class DependecyContainer {
         ChronologyViewModel(fetchChronologyUseCase: fetchChronologyUseCase,
                             sessionManager: sessionManager)
     }
-    
 }

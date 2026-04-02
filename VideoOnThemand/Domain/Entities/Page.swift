@@ -6,6 +6,7 @@
 //
 
 import Foundation
+
 enum Page: Int {
     case Login = 0
     case Home = 1

@@ -8,5 +8,5 @@
 import Foundation
 
 protocol MovieRepositoryProtocol: Sendable {
-    func loadFilms(localUserId: String) async throws -> AsyncStream<[Film]>
+    func loadFilms(localUserId: String) async -> AsyncThrowingStream<[Film],Error> 
 }

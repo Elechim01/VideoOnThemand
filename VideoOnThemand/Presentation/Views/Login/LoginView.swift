@@ -20,7 +20,7 @@ struct LoginView: View {
         ZStack {
             VStack(spacing: 40) {
                 VStack(spacing: 20) {
-                    Text("Benvenuto in app.")
+                    Text("LOGIN.TITLE".localized())
                         .font(.title)
                     
                     Text("Effettua l'accesso per visionare i video")

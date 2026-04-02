@@ -10,8 +10,8 @@ import Services
 
 final class ChronologyRepository: ChronologyRepositoryProtocol {
     
-    func loadChronology(localUser: String) async throws -> AsyncStream<[Chronology]> {
-        return try await FirebaseUtils.shared.recuperoChronology(localUser: localUser)
+    func loadChronology(localUser: String) async -> AsyncThrowingStream<[Chronology], Error> {
+        return await FirebaseUtils.shared.recuperoChronology(localUser: localUser)
     }
     
     func updatePlay(chronology: Chronology, filmId: String) async throws {

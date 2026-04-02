@@ -42,6 +42,8 @@
 		C465E1152EB67A1600E7D0D5 /* DoubleText.swift in Sources */ = {isa = PBXBuildFile; fileRef = C465E1142EB67A1600E7D0D5 /* DoubleText.swift */; };
 		C47E10822A41DFCD004E1567 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = C47E10812A41DFCD004E1567 /* Shaders.metal */; };
 		C4AB2F002EB79AC200DAE7BF /* CachedAsyncImage in Frameworks */ = {isa = PBXBuildFile; productRef = C4AB2EFF2EB79AC200DAE7BF /* CachedAsyncImage */; };
+		C4BCC8BB2F7E5DEC00AB4144 /* SectionPages.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BCC8BA2F7E5DEC00AB4144 /* SectionPages.swift */; };
+		C4BCC8BD2F7E61E200AB4144 /* PlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BCC8BC2F7E61E200AB4144 /* PlayerManager.swift */; };
 		C4C044522E4FA9B700E947F4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C4C044502E4FA9B700E947F4 /* Localizable.strings */; };
 		C4C7A78B28A2A08B001CB803 /* VideoOnThemandApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C7A78A28A2A08B001CB803 /* VideoOnThemandApp.swift */; };
 		C4C7A78D28A2A08B001CB803 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C7A78C28A2A08B001CB803 /* ContentView.swift */; };
@@ -62,6 +64,16 @@
 		C4E532612E5CC25800AEADBB /* Chronology.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E532602E5CC25800AEADBB /* Chronology.swift */; };
 		C4E532652E5CCE1000AEADBB /* ChronologyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E532632E5CCE1000AEADBB /* ChronologyView.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C4BCC8C62F7E6CB700AB4144 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C4C7A77F28A2A08B001CB803 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C4C7A78628A2A08B001CB803;
+			remoteInfo = VideoOnThemand;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		C40C142F2EA5757E0056EA34 /* BubbleText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleText.swift; sourceTree = "<group>"; };
@@ -95,6 +107,9 @@
 		C465E1122EB673DA00E7D0D5 /* ChronologyCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChronologyCardView.swift; sourceTree = "<group>"; };
 		C465E1142EB67A1600E7D0D5 /* DoubleText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleText.swift; sourceTree = "<group>"; };
 		C47E10812A41DFCD004E1567 /* Shaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
+		C4BCC8BA2F7E5DEC00AB4144 /* SectionPages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionPages.swift; sourceTree = "<group>"; };
+		C4BCC8BC2F7E61E200AB4144 /* PlayerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerManager.swift; sourceTree = "<group>"; };
+		C4BCC8C22F7E6CB700AB4144 /* VideoOnThemandTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VideoOnThemandTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4C044512E4FA9B700E947F4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C4C044532E4FA9C200E947F4 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C4C7A78728A2A08B001CB803 /* VideoOnThemand.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VideoOnThemand.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -121,9 +136,17 @@
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		C40C42DD2EB7B9AD008C77C3 /* VideoOnTheMandGoogle */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = VideoOnTheMandGoogle; sourceTree = "<group>"; };
+		C4BCC8C32F7E6CB700AB4144 /* VideoOnThemandTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = VideoOnThemandTests; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		C4BCC8BF2F7E6CB700AB4144 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C4C7A78428A2A08B001CB803 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -190,6 +213,7 @@
 				C4C7A79F28A2A411001CB803 /* Utente.swift */,
 				C4640A5E29BD541B008684A1 /* Page.swift */,
 				C4E532602E5CC25800AEADBB /* Chronology.swift */,
+				C4BCC8BA2F7E5DEC00AB4144 /* SectionPages.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -276,6 +300,7 @@
 				C4C7A79A28A2A1A9001CB803 /* LoginViewModel.swift */,
 				C4C7A7A128A2A4CF001CB803 /* HomeViewModel.swift */,
 				C4CC5D082E5DB14C00C4B007 /* ChronologyViewModel.swift */,
+				C4BCC8BC2F7E61E200AB4144 /* PlayerManager.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -388,6 +413,7 @@
 			children = (
 				C4F2537F2E7E08C800E58300 /* Appunti.txt */,
 				C4C7A78928A2A08B001CB803 /* VideoOnThemand */,
+				C4BCC8C32F7E6CB700AB4144 /* VideoOnThemandTests */,
 				C45934622F7BD0A7002661E6 /* Frameworks */,
 				C4C7A78828A2A08B001CB803 /* Products */,
 			);
@@ -397,6 +423,7 @@
 			isa = PBXGroup;
 			children = (
 				C4C7A78728A2A08B001CB803 /* VideoOnThemand.app */,
+				C4BCC8C22F7E6CB700AB4144 /* VideoOnThemandTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -473,6 +500,29 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		C4BCC8C12F7E6CB700AB4144 /* VideoOnThemandTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C4BCC8C82F7E6CB700AB4144 /* Build configuration list for PBXNativeTarget "VideoOnThemandTests" */;
+			buildPhases = (
+				C4BCC8BE2F7E6CB700AB4144 /* Sources */,
+				C4BCC8BF2F7E6CB700AB4144 /* Frameworks */,
+				C4BCC8C02F7E6CB700AB4144 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C4BCC8C72F7E6CB700AB4144 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				C4BCC8C32F7E6CB700AB4144 /* VideoOnThemandTests */,
+			);
+			name = VideoOnThemandTests;
+			packageProductDependencies = (
+			);
+			productName = VideoOnThemandTests;
+			productReference = C4BCC8C22F7E6CB700AB4144 /* VideoOnThemandTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		C4C7A78628A2A08B001CB803 /* VideoOnThemand */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = C4C7A79528A2A08D001CB803 /* Build configuration list for PBXNativeTarget "VideoOnThemand" */;
@@ -507,9 +557,13 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1340;
+				LastSwiftUpdateCheck = 2630;
 				LastUpgradeCheck = 1340;
 				TargetAttributes = {
+					C4BCC8C12F7E6CB700AB4144 = {
+						CreatedOnToolsVersion = 26.3;
+						TestTargetID = C4C7A78628A2A08B001CB803;
+					};
 					C4C7A78628A2A08B001CB803 = {
 						CreatedOnToolsVersion = 13.4.1;
 					};
@@ -536,11 +590,19 @@
 			projectRoot = "";
 			targets = (
 				C4C7A78628A2A08B001CB803 /* VideoOnThemand */,
+				C4BCC8C12F7E6CB700AB4144 /* VideoOnThemandTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		C4BCC8C02F7E6CB700AB4144 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C4C7A78528A2A08B001CB803 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -556,6 +618,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		C4BCC8BE2F7E6CB700AB4144 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C4C7A78328A2A08B001CB803 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -590,6 +659,7 @@
 				C45934722F7C0803002661E6 /* RestoreSessionUseCase.swift in Sources */,
 				C4640A5F29BD541C008684A1 /* Page.swift in Sources */,
 				C47E10822A41DFCD004E1567 /* Shaders.metal in Sources */,
+				C4BCC8BD2F7E61E200AB4144 /* PlayerManager.swift in Sources */,
 				C4CC5D142E5DC66800C4B007 /* PageManager.swift in Sources */,
 				C45934582F7BBFBA002661E6 /* MovieRepository.swift in Sources */,
 				C465E1152EB67A1600E7D0D5 /* DoubleText.swift in Sources */,
@@ -599,6 +669,7 @@
 				C4C7A79B28A2A1A9001CB803 /* LoginViewModel.swift in Sources */,
 				C465E10D2EB660FA00E7D0D5 /* ButtonView.swift in Sources */,
 				C45934702F7C02B6002661E6 /* Coordinator.swift in Sources */,
+				C4BCC8BB2F7E5DEC00AB4144 /* SectionPages.swift in Sources */,
 				C4C7A7C028A50694001CB803 /* FilmThumbnailView.swift in Sources */,
 				C4C7A7A028A2A411001CB803 /* Utente.swift in Sources */,
 				C465E1102EB672BC00E7D0D5 /* FilmDetailView.swift in Sources */,
@@ -608,6 +679,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C4BCC8C72F7E6CB700AB4144 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C4C7A78628A2A08B001CB803 /* VideoOnThemand */;
+			targetProxy = C4BCC8C62F7E6CB700AB4144 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		C4C044502E4FA9B700E947F4 /* Localizable.strings */ = {
@@ -622,6 +701,61 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		C4BCC8C92F7E6CB700AB4144 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = G7DSPSWXXC;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.MicheleManniello.VideoOnThemandTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VideoOnThemand.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/VideoOnThemand";
+				TVOS_DEPLOYMENT_TARGET = 26.0;
+			};
+			name = Debug;
+		};
+		C4BCC8CA2F7E6CB700AB4144 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = G7DSPSWXXC;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.MicheleManniello.VideoOnThemandTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VideoOnThemand.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/VideoOnThemand";
+				TVOS_DEPLOYMENT_TARGET = 26.0;
+			};
+			name = Release;
+		};
 		C4C7A79328A2A08D001CB803 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -801,6 +935,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		C4BCC8C82F7E6CB700AB4144 /* Build configuration list for PBXNativeTarget "VideoOnThemandTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C4BCC8C92F7E6CB700AB4144 /* Debug */,
+				C4BCC8CA2F7E6CB700AB4144 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		C4C7A78228A2A08B001CB803 /* Build configuration list for PBXProject "VideoOnThemand" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
