@@ -1,12 +1,12 @@
 {
   "images" : [
     {
-      "filename" : "0C.png",
+      "filename" : "Rectangle 1X.png",
       "idiom" : "tv",
       "scale" : "1x"
     },
     {
-      "filename" : "0C 1.png",
+      "filename" : "Rectangle 2x.png",
       "idiom" : "tv",
       "scale" : "2x"
     }
