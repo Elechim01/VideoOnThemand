@@ -19,7 +19,7 @@ class CredentialRepository: CredentialRepositoryProtocol {
         return (email, password)
     }
     
-    func saveCredential(email: String, password: String) {
-        AuthKeyChain.shared.setCredential(email: email, password: password)
+    func saveCredential(email: String, password: String) throws {
+       try AuthKeyChain.shared.setCredential(email: email, password: password)
     }
 }

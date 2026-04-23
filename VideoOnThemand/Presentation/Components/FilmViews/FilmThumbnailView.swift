@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Services
 import CachedAsyncImage
 
 struct FilmThumbnailView: View {

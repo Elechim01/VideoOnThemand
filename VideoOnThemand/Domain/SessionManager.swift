@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Services
 
 class SessionManager: ObservableObject {
     @Published var currentUser: Utente?

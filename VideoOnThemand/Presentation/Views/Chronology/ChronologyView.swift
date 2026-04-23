@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Services
 
 struct ChronologyView: View {
     @EnvironmentObject var chronologyViewModel: ChronologyViewModel
@@ -71,7 +72,7 @@ struct ChronologyView: View {
         .ignoresSafeArea()
         .onAppear {
             if isPreview {
-                chronologyViewModel.chronologyList = mockChronology
+                chronologyViewModel.chronologyList = Mock.mockChronology
                 
             } else {
                 Task {

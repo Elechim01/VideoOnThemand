@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Services
 
 struct ChronologyCardView: View {
     let chronology: Chronology
@@ -27,7 +28,7 @@ struct ChronologyCardView: View {
 }
 
 #Preview {
-    ChronologyCardView(chronology: .init(film: mockFilms[0], localUsedId: ""))
+    ChronologyCardView(chronology: .init(film: Mock.mockFilm[0], localUsedId: ""))
         .frame(width: 400,height: 200)
         .background(Color("Background"))
 }

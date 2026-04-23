@@ -9,6 +9,7 @@ import UIKit
 import SwiftUI
 import AVKit
 import ElechimCore
+import Services
 
 @MainActor
 class HomeViewModel: ObservableObject {

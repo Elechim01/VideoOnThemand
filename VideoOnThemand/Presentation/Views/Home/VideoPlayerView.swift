@@ -8,6 +8,7 @@
 import SwiftUI
 import AVKit
 import Combine
+import Services
 
 struct VideoPlayerView: View {
     @StateObject private var playerManager = PlayerManager()
