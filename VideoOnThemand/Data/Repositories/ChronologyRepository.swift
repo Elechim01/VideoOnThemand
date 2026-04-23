@@ -14,8 +14,8 @@ final class ChronologyRepository: ChronologyRepositoryProtocol {
         return await FirebaseUtils.shared.recuperoChronology(localUser: localUser)
     }
     
-    func updatePlay(chronology: Chronology, filmId: String) async throws {
-        return try await FirebaseUtils.shared.updatePlay(chronology: chronology, filmId: filmId)
+    func updatePlay(chronology: Chronology) async throws {
+        return try await FirebaseUtils.shared.updatePlay(chronology: chronology)
     }
     
 }

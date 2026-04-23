@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Services
 import ElechimCore
 
 struct FilmDetailView: View {
@@ -37,7 +38,7 @@ struct FilmDetailView: View {
 }
 
 #Preview {
-    FilmDetailView(chronology: .init(film: mockFilms[0], localUsedId: "Michele"))
+    FilmDetailView(chronology: .init(film: Mock.mockFilm[0], localUsedId: "Michele"))
         .background(Color("Background"))
         .padding()
         .frame(width: 1000, height: 400)

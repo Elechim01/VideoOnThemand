@@ -6,8 +6,9 @@
 //
 
 import Foundation
+import Services
 
 protocol ChronologyRepositoryProtocol: Sendable {
     func loadChronology(localUser: String) async  -> AsyncThrowingStream<[Chronology], Error>
-    func updatePlay(chronology: Chronology, filmId: String) async throws
+    func updatePlay(chronology: Chronology) async throws
 }

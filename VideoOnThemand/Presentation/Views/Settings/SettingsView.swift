@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Charts
+import Services
 import ElechimCore
 
 struct SettingsView: View {
@@ -102,7 +103,7 @@ struct SettingsView: View {
                 .frame(width: 800)
                 .padding()
                 
-                Chart(isPreviews ? mockFilms : homeViewModel.films) { film in
+                Chart(isPreviews ? Mock.mockFilm : homeViewModel.films) { film in
                     
                     SectorMark(
                         angle: .value("Size",  film.size),

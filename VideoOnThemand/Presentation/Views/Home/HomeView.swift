@@ -7,7 +7,7 @@
 
 import SwiftUI
 import AVKit
-
+import Services
 
 struct HomeView: View {
     
@@ -42,7 +42,7 @@ struct HomeView: View {
         }
         .onAppear(perform: {
             if isPreviews {
-                homeviewModel.films = mockFilms
+                homeviewModel.films = Mock.mockFilm
                 homeviewModel.showProgressView = true
             }
         })

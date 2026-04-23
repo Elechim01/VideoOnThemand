@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Services
 
 class FetchChronologyUseCase {
     private let chronologyRepository: ChronologyRepositoryProtocol

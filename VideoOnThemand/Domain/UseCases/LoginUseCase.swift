@@ -19,7 +19,7 @@ class LoginUseCase {
     
     func execute(email: String, password: String) async throws -> String {
         let id = try await authRepository.signIn(email: email, password: password)
-        credentialRepository.saveCredential(email: email, password: password)
+        try credentialRepository.saveCredential(email: email, password: password)
         return id
     }
     

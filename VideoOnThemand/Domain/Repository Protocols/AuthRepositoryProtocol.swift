@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Services
 
 protocol AuthRepositoryProtocol {
     func getCurentUser(userId: String, email: String, password: String) async throws -> Utente

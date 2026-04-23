@@ -7,6 +7,7 @@
 
 import Foundation
 import ElechimCore
+import Services
 
 @MainActor
 class ChronologyViewModel: ObservableObject {
