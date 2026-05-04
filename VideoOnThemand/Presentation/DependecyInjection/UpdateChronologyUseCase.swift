@@ -17,7 +17,6 @@ class UpdateChronologyUseCase {
     
     func execute(film: Film, localUserId: String) async throws {
         let chronology = Chronology(film: film, localUsedId: localUserId)
-        return try await chronologyRepository.updatePlay(
-            chronology: chronology)
+        return try await chronologyRepository.updatePlay(chronology: chronology)
     }
 }

@@ -49,6 +49,8 @@ class Coordinator: ObservableObject {
     
     func logout() {
         if loginViewModel.logOut() {
+            homeViewModel.clearData()
+            chronologyViewModel.clearData()
             currentPage = .Login
         }
     }

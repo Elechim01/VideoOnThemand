@@ -11,6 +11,7 @@ struct LoginView: View {
     @EnvironmentObject var coordinator: Coordinator
     @ObservedObject var loginViewModel: LoginViewModel
     @Environment(\.colorScheme) var colorScheme
+    @State private var showDeleteRememberedCredential: Bool = false
     
     init(loginViewModel: LoginViewModel) {
         self.loginViewModel = loginViewModel
@@ -23,7 +24,7 @@ struct LoginView: View {
                     Text("LOGIN.TITLE".localized())
                         .font(.title)
                     
-                    Text("Effettua l'accesso per visionare i video")
+                    Text("LOGIN.SUBTITLE".localized())
                         .font(.title2)
                 }
                 .padding(.top, 60)
@@ -34,11 +35,11 @@ struct LoginView: View {
                             Image(systemName: "envelope")
                                 .font(.title2)
                             
-                            Text("Email")
+                            Text("LOGIN.EMAIL.TEXT".localized())
                                 .font(.title2)
                         }
                         
-                        TextField("Inserisci email", text: $loginViewModel.email)
+                        TextField("LOGIN.TEXTFIELD.EMAIL".localized(), text: $loginViewModel.email)
                             .font(.title2)
                             .padding()
                             .glassEffect(.regular, in: .buttonBorder)
@@ -49,11 +50,11 @@ struct LoginView: View {
                             Image(systemName: "lock")
                                 .font(.title2)
                             
-                            Text("Password")
+                            Text("LOGIN.PASSWORD.TEXT".localized())
                                 .font(.title2)
                         }
                         
-                        SecureField("Inserisci password", text: $loginViewModel.password)
+                        SecureField("LOGIN.TEXTFIELD.EMAIL".localized(), text: $loginViewModel.password)
                             .font(.title2)
                             .padding()
                             .glassEffect(.regular, in: .buttonBorder)
@@ -61,19 +62,43 @@ struct LoginView: View {
                 }
                 .padding(.horizontal, 100)
                 
-                Button(action: {
-                    Task {
-                        await coordinator.login()
+                HStack {
+                    Button(action: {
+                        Task {
+                            await coordinator.login()
+                        }
+                    }, label: {
+                        Text("Login")
+                            .font(.title2)
+                            .fontWeight(.semibold)
+                            .padding(.vertical, 20)
+                            .padding(.horizontal, 60)
+                    })
+                    .glassEffect(.regular, in: .capsule)
+                    
+                    if loginViewModel.canShowAutoFill {
+                        Button(action: {
+                            loginViewModel.loadRememberCredential()
+                        }, label: {
+                            Label("LOGIN.REMEMBER.CREDENTIAL".localized(), systemImage: "key.fill")
+                                .font(.title2)
+                        })
+                        .glassEffect(.regular, in: .capsule)
                     }
-                }, label: {
-                    Text("Login")
-                        .font(.title2)
-                        .fontWeight(.semibold)
-                        .padding(.vertical, 20)
-                        .padding(.horizontal, 60)
-                })
-                .glassEffect(.regular, in: .capsule)
-                
+                    
+                    Button(action: {
+                        showDeleteRememberedCredential.toggle()
+                    }, label: {
+                        Image(systemName: "trash")
+                            .font(.title3)
+                            .fontWeight(.semibold)
+                            .padding(.vertical, 20)
+                            .padding(.horizontal, 60)
+                    })
+                    .glassEffect(.regular, in: .capsule)
+                    
+                }
+
                 Spacer()
             }
             if loginViewModel.showProgressView {
@@ -82,8 +107,19 @@ struct LoginView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(AppColors.backgroundGradient(for: colorScheme).ignoresSafeArea())
+        .onAppear(perform: {
+            self.loginViewModel.checkStatus()
+        })
+        .alert("LOGIN.REMOVE.CREDENTIAL".localized(), isPresented: $showDeleteRememberedCredential) {
+            Button("LOGIN.REMOVE.CREDENTIAL.CANCEL".localized(), role: .cancel) { }
+            Button("LOGIN.REMOVE.CREDENTIAL.DELETE".localized(), role: .destructive) {
+                loginViewModel.deleteRememberCredential()
+            }
+        } message: {
+            Text("LOGIN.REMOVE.CREDENTIAL.MESSAGE".localized())
+        }
         .alert(loginViewModel.errorMessage, isPresented: $loginViewModel.showError, actions: {
-            Button("OK", role: .cancel) {
+            Button("LOGIN.OK".localized(), role: .cancel) {
                 loginViewModel.showError = false
             }
         })

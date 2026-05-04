@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 import AVKit
 import Combine
+import ElechimCore
 
 final class PlayerManager: ObservableObject {
     @Published var player = AVPlayer()
@@ -16,10 +17,12 @@ final class PlayerManager: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
     
     func replaceItem(with item: AVPlayerItem) {
+        CustomLog.debug(category: .VM, "\(#function)")
         player.replaceCurrentItem(with: item)
     }
     
     func playWhenReady() {
+        CustomLog.debug(category: .VM, "\(#function)")
         guard let currentItem = player.currentItem else { return }
         currentItem.publisher(for: \.status)
             .sink { [weak self] status in
@@ -39,6 +42,7 @@ final class PlayerManager: ObservableObject {
     
     
     func stop() {
+        CustomLog.debug(category: .VM, "\(#function)")
         player.pause()
         player.replaceCurrentItem(with: nil)
     }

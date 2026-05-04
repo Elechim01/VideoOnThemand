@@ -60,6 +60,9 @@
 		C4CC5D142E5DC66800C4B007 /* PageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CC5D132E5DC66800C4B007 /* PageManager.swift */; };
 		C4E4BBBC2F142F5D00C18E02 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4C7A78E28A2A08D001CB803 /* Assets.xcassets */; };
 		C4E532652E5CCE1000AEADBB /* ChronologyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E532632E5CCE1000AEADBB /* ChronologyView.swift */; };
+		C4FD388F2FA23E6200DA3F3C /* GetRememberedCredentialsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FD388E2FA23E6200DA3F3C /* GetRememberedCredentialsUseCase.swift */; };
+		C4FD38912FA2413D00DA3F3C /* DeleteRememberedCredentialsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FD38902FA2413D00DA3F3C /* DeleteRememberedCredentialsUseCase.swift */; };
+		C4FD38932FA242CB00DA3F3C /* ExistRememberedCredentialUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FD38922FA242CB00DA3F3C /* ExistRememberedCredentialUseCase.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +80,7 @@
 		C40C14322EA578130056EA34 /* FocusModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusModifier.swift; sourceTree = "<group>"; };
 		C40C14342EA57B8A0056EA34 /* PixelateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixelateView.swift; sourceTree = "<group>"; };
 		C40C42DE2EB7B9CC008C77C3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C42FE1F22F9BC73D0019016F /* VideoOnThemand.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = VideoOnThemand.entitlements; sourceTree = "<group>"; };
 		C449FC442ECA3209009E61FC /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		C4524EDD2A6E798900B22C1C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		C45934492F7AB588002661E6 /* ChronologyRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChronologyRepositoryProtocol.swift; sourceTree = "<group>"; };
@@ -126,6 +130,9 @@
 		C4CC5D132E5DC66800C4B007 /* PageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageManager.swift; sourceTree = "<group>"; };
 		C4E532632E5CCE1000AEADBB /* ChronologyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChronologyView.swift; sourceTree = "<group>"; };
 		C4F2537F2E7E08C800E58300 /* Appunti.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Appunti.txt; sourceTree = "<group>"; };
+		C4FD388E2FA23E6200DA3F3C /* GetRememberedCredentialsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetRememberedCredentialsUseCase.swift; sourceTree = "<group>"; };
+		C4FD38902FA2413D00DA3F3C /* DeleteRememberedCredentialsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteRememberedCredentialsUseCase.swift; sourceTree = "<group>"; };
+		C4FD38922FA242CB00DA3F3C /* ExistRememberedCredentialUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExistRememberedCredentialUseCase.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -230,6 +237,9 @@
 				C459346B2F7BD8E7002661E6 /* LogoutUseCase.swift */,
 				C459346D2F7BD907002661E6 /* LoginUseCase.swift */,
 				C45934712F7C0803002661E6 /* RestoreSessionUseCase.swift */,
+				C4FD388E2FA23E6200DA3F3C /* GetRememberedCredentialsUseCase.swift */,
+				C4FD38902FA2413D00DA3F3C /* DeleteRememberedCredentialsUseCase.swift */,
+				C4FD38922FA242CB00DA3F3C /* ExistRememberedCredentialUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -422,6 +432,7 @@
 		C4C7A78928A2A08B001CB803 /* VideoOnThemand */ = {
 			isa = PBXGroup;
 			children = (
+				C42FE1F22F9BC73D0019016F /* VideoOnThemand.entitlements */,
 				C45934382F7AAC34002661E6 /* Infrastructure */,
 				C459343F2F7AACEC002661E6 /* Data */,
 				C45934342F7AABC0002661E6 /* Domain */,
@@ -622,6 +633,7 @@
 			files = (
 				C459346C2F7BD8E7002661E6 /* LogoutUseCase.swift in Sources */,
 				C449FC452ECA3209009E61FC /* Colors.swift in Sources */,
+				C4FD38932FA242CB00DA3F3C /* ExistRememberedCredentialUseCase.swift in Sources */,
 				C45934562F7BBF6A002661E6 /* MovieRepositoryProtocol.swift in Sources */,
 				C45934662F7BD5B0002661E6 /* GetCurrentUserUseCase.swift in Sources */,
 				C4C7A7BC28A2C298001CB803 /* HomeView.swift in Sources */,
@@ -635,6 +647,7 @@
 				C4C7A7A428A2A573001CB803 /* LoginView.swift in Sources */,
 				C45934772F7D2C33002661E6 /* CustomProgressView.swift in Sources */,
 				C4CC5D092E5DB14C00C4B007 /* ChronologyViewModel.swift in Sources */,
+				C4FD388F2FA23E6200DA3F3C /* GetRememberedCredentialsUseCase.swift in Sources */,
 				C40C14352EA57B8B0056EA34 /* PixelateView.swift in Sources */,
 				C4C7A7A228A2A4CF001CB803 /* HomeViewModel.swift in Sources */,
 				C459344A2F7AB588002661E6 /* ChronologyRepositoryProtocol.swift in Sources */,
@@ -661,6 +674,7 @@
 				C4BCC8BB2F7E5DEC00AB4144 /* SectionPages.swift in Sources */,
 				C4C7A7C028A50694001CB803 /* FilmThumbnailView.swift in Sources */,
 				C465E1102EB672BC00E7D0D5 /* FilmDetailView.swift in Sources */,
+				C4FD38912FA2413D00DA3F3C /* DeleteRememberedCredentialsUseCase.swift in Sources */,
 				C4C7A7C228A507D5001CB803 /* VideoPlayerView.swift in Sources */,
 				C459346E2F7BD907002661E6 /* LoginUseCase.swift in Sources */,
 			);
@@ -863,6 +877,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = VideoOnThemand/VideoOnThemand.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"VideoOnThemand/Preview Content\"";
@@ -894,6 +909,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = VideoOnThemand/VideoOnThemand.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"VideoOnThemand/Preview Content\"";

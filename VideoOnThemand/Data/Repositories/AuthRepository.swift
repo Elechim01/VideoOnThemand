@@ -11,10 +11,8 @@ import ElechimCore
 import FirebaseAuth
 
 final class AuthRepository: AuthRepositoryProtocol {
-    func getCurentUser(userId: String, email: String, password: String) async throws -> Utente {
-        guard let user: Utente =  try await FirebaseUtils.shared.recuperoUtente(email: email,
-                                                                                password: password,
-                                                                                id: userId) else {
+    func getCurentUser(userId: String) async throws -> Utente {
+        guard let user: Utente =  try await FirebaseUtils.shared.recuperoUtente(id: userId) else {
             throw CustomError.noUser
         }
         return user

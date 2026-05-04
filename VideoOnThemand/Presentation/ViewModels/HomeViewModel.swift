@@ -42,20 +42,18 @@ class HomeViewModel: ObservableObject {
             storageAscendindOrder = orderAscending
         }
     }
-    @Published var chronologyList: [Chronology] = []
-    
     public var totalSizeFilm: Double {
         var size = 0.0
         films.forEach { size += $0.size }
         return size
     }
-    
     public let totalSize = 10240.0
     
     private let updateChronologyUseCase: UpdateChronologyUseCase
     private let fetchMovieUseCase: FetchMovieUseCase
     private let getCurrentUserUseCase: GetCurrentUserUseCase
     let sessionManager: SessionManager
+    private var fetchFilmTask: Task<Void, Never>?
     
     init(updateChronologyUseCase: UpdateChronologyUseCase,
          fetchMovieUseCase: FetchMovieUseCase,
@@ -86,22 +84,33 @@ class HomeViewModel: ObservableObject {
     
     
     func start() async {
+        CustomLog.debug(category: .VM, "\(#function)")
         await recuperoUtente()
-        Task {
+        fetchFilmTask = Task {
             await recuperoFilm()
         }
     }
+   
+    func stopFetching() {
+        CustomLog.debug(category: .VM, "Stopping Firestore stream...")
+        fetchFilmTask?.cancel()
+        fetchFilmTask = nil
+    }
+    
     
     func recuperoFilm() async {
+        CustomLog.debug(category: .VM, "\(#function)")
         self.showProgressView = true
         do {
             let stream = await fetchMovieUseCase.execute(localUserId: sessionManager.currentUser?.id ?? "")
             for try await films in stream {
 #if DEBUG
-                films.forEach { print("\($0.nome)")  }
+                films.forEach {
+                    CustomLog.debug(category: .VM, "\($0.nome)")
+                }
 #endif
-#warning("Implementare Comparable")
                 self.showProgressView = false
+                if Task.isCancelled { break }
                 self.films = films.sorted {
                     let d0 = $0.data ?? Date.now
                     let d1 = $1.data ?? Date.now
@@ -110,31 +119,48 @@ class HomeViewModel: ObservableObject {
             }
             
         } catch  {
-            Utils.showError(alertMessage: &alertMessage, showAlert: &showAlert, from: error)
+            showError(error: error)
         }
     }
     
     func recuperoUtente() async {
+        CustomLog.debug(category: .VM, "\(#function)")
         self.showProgressView = true
         do {
            let user = try await getCurrentUserUseCase.execute(userId: userId)
             self.sessionManager.currentUser = user
             self.showProgressView = false
         } catch  {
-            Utils.showError(alertMessage: &alertMessage, showAlert: &showAlert, from: error)
+            showError(error: error)
         }
        
     }
   
     func updateData(selectedFilm: Film) async  {
+        CustomLog.debug(category: .VM, "\(#function)")
         do {
             try await updateChronologyUseCase.execute(film: selectedFilm,
                                                       localUserId: self.sessionManager.currentUser?.id ?? "")
         } catch {
-
-            Utils.showError(alertMessage: &alertMessage, showAlert: &showAlert, from: error)
+            showError(error: error)
         }
     }
     
+    func clearData() {
+        CustomLog.debug(category: .VM, "\(#function)")
+        // stop Fetch
+        self.stopFetching()
+        // celar all
+        self.films = []
+        self.sessionManager.currentUser = nil
+        self.showAlert = false
+        self.alertMessage = ""
+        self.showProgressView = false
+    }
+    
+    func showError(error: any Error) {
+        CustomLog.debug(category: .VM, "\(error.localizedDescription)")
+        Utils.showError(alertMessage: &alertMessage, showAlert: &showAlert, from: error)
+    }
     
 }

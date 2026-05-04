@@ -57,6 +57,18 @@ class DependecyContainer {
         return RestoreSessionUseCase(repository: credentialRepository)
     }()
     
+    private lazy var getRememberedCredential: GetRememberedCredentialsUseCase = {
+        return GetRememberedCredentialsUseCase(repository: credentialRepository)
+    }()
+    
+    private lazy var deleteRememberedCredential: DeleteRememberedCredentialsUseCase = {
+       return DeleteRememberedCredentialsUseCase(repository: credentialRepository)
+    }()
+    
+    private lazy var existRememberedCredentialUseCase: ExistRememberedCredentialUseCase = {
+        return ExistRememberedCredentialUseCase(repository: credentialRepository)
+    }()
+    
     // MARK: VIEWModel
     
     let sessionManager = SessionManager()
@@ -64,7 +76,10 @@ class DependecyContainer {
     @MainActor func makeLoginViewModel() -> LoginViewModel {
         LoginViewModel(loginUseCase: loginUseCase,
                        logoutUseCase: logoutUseCase,
-                       restoreSessionUseCasse: restoreSessionUseCase)
+                       restoreSessionUseCasse: restoreSessionUseCase,
+                       getRememberedCredentialUseCase: getRememberedCredential,
+                       deleteRememberedCredentialUseCase: deleteRememberedCredential,
+                       existRememberedCredentialUseCase:existRememberedCredentialUseCase,)
     }
     
     @MainActor func makeHomeViewModel() -> HomeViewModel {

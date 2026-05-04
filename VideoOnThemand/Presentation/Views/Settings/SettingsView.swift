@@ -19,7 +19,6 @@ struct SettingsView: View {
     
     @FocusState private var showFocus: InfoLabel?
     private let pixellate: CGFloat = 20
-    @State private var usePixelate: Bool = true
     private var showOrHide: Bool { pixellate == 1 }
     
     
@@ -44,27 +43,6 @@ struct SettingsView: View {
                 
                 
                 Divider()
-                
-                CustomText(font: .system(size: 40),
-                           text: homeViewModel.sessionManager.currentUser?.email ?? "",
-                           infoLabel: .email)
-                
-                
-                if(usePixelate) {
-                    PixelateView(text:  homeViewModel.sessionManager.currentUser?.password ?? "", font: .system(size: 40), fontWeight: nil, pixelate: pixellate)
-                } else {
-                    CustomText(font: .system(size: 40),
-                               text: homeViewModel.sessionManager.currentUser?.password ?? "",
-                               infoLabel: .password)
-                }
-                
-                
-                Button {
-                    usePixelate.toggle()
-                } label: {
-                    Text(showOrHide ? "SETTINGS.HIDE.PASSWORD".localized() : "SETTINGS.SHOW.PASSWORD".localized())
-                }
-                
                 
                 Text("\("SETTINGS.SPACE".localized()) \(Utils.formatStorage(homeViewModel.totalSize)) / \(Utils.formatStorage (homeViewModel.totalSizeFilm))")
                     .padding()
@@ -93,8 +71,7 @@ struct SettingsView: View {
                         GlassButtonView(text: "SETTINGS.LOGOUT".localized()) {
                             showAlert.toggle()
                         }
-                    }
-                    VStack(spacing: 16) {
+                        
                         GlassButtonView(text: homeViewModel.orderAscending ? "SETTINGS.DESCENDENTING".localized() : "SETTINGS.ASCENDENTING".localized()) {
                             homeViewModel.orderAscending.toggle()
                         }
