@@ -15,7 +15,7 @@ struct FilmDetailView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             
-            DoubleText(textLeft: "CHRONOLOGY.TITLE".localized(),
+            DoubleText(textLeft: "CHRONOLOGY.DETAIL.TITLE".localized(),
                        rightText: chronology.filmName,
                        fontTextLeft: .title2.bold(),
                        fontTextRight: .system(size: 40).bold())

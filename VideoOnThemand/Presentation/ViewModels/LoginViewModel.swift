@@ -11,11 +11,12 @@ import ElechimCore
 
 @MainActor
 class LoginViewModel: ObservableObject{
- 
+    
     @Published var showError : Bool = false
     @Published var errorMessage : String = ""
     @Published var showProgressView: Bool = false
- 
+    @Published var canShowAutoFill: Bool = false
+    
     //    Memorizzo la password e l'email
     @AppStorage("IDUser") var idUser = ""
     
@@ -25,6 +26,9 @@ class LoginViewModel: ObservableObject{
     private let loginUseCase: LoginUseCase
     private let logoutUseCase: LogoutUseCase
     private let restoreSessionUseCase: RestoreSessionUseCase
+    private let getRememberedCredentialUseCase: GetRememberedCredentialsUseCase
+    private let deleteRememberedCredentialUseCase: DeleteRememberedCredentialsUseCase
+    private let existRememberedCredentialUseCase: ExistRememberedCredentialUseCase
     
     var getCheck: Bool {
         if email.isEmpty {
@@ -36,7 +40,7 @@ class LoginViewModel: ObservableObject{
             return false
         }
         if password.isEmpty {
-           errorMessage = "Il campo password è vuoto"
+            errorMessage = "Il campo password è vuoto"
             return false
         }
         if !Utils.isValidPassword(testStr: password) {
@@ -48,18 +52,24 @@ class LoginViewModel: ObservableObject{
     
     init(loginUseCase: LoginUseCase,
          logoutUseCase: LogoutUseCase,
-         restoreSessionUseCasse: RestoreSessionUseCase
+         restoreSessionUseCasse: RestoreSessionUseCase,
+         getRememberedCredentialUseCase: GetRememberedCredentialsUseCase,
+         deleteRememberedCredentialUseCase: DeleteRememberedCredentialsUseCase,
+         existRememberedCredentialUseCase: ExistRememberedCredentialUseCase,
     ) {
         self.loginUseCase = loginUseCase
         self.logoutUseCase = logoutUseCase
         self.restoreSessionUseCase = restoreSessionUseCasse
+        self.getRememberedCredentialUseCase = getRememberedCredentialUseCase
+        self.deleteRememberedCredentialUseCase = deleteRememberedCredentialUseCase
+        self.existRememberedCredentialUseCase = existRememberedCredentialUseCase
     }
     
-//    Page: 0 -> Login, 1 -> Home
+    //    Page: 0 -> Login, 1 -> Home
     
     
     func login() async -> Bool  {
-      
+        CustomLog.debug(category: .VM, "\(#function)")
         do {
             guard getCheck else {
                 self.showError.toggle()
@@ -74,12 +84,13 @@ class LoginViewModel: ObservableObject{
             showProgressView = false
             return true
         } catch  {
-            Utils.showError(alertMessage: &errorMessage, showAlert: &showError, from: error)
+            showError(from: error)
             return false
         }
     }
     
     func restoreSession() -> Bool {
+        CustomLog.debug(category: .VM, "\(#function)")
         do {
             try restoreSessionUseCase.execute()
             return true
@@ -92,17 +103,47 @@ class LoginViewModel: ObservableObject{
         do {
             try  logoutUseCase.execute()
             self.idUser = ""
+            self.clear()
             return true
         } catch {
-            Utils.showError(alertMessage: &errorMessage, showAlert: &showError, from: error)
+            showError(from: error)
             return false
         }
     }
     
-   /* func onLoginTapped() async {
-       await coordinator?.login()
+    func deleteRememberCredential() {
+        CustomLog.debug(category: .VM, "\(#function)")
+        deleteRememberedCredentialUseCase.execute()
+        checkStatus()
     }
-    */
+    
+    func checkStatus() {
+        CustomLog.debug(category: .VM, "\(#function)")
+        canShowAutoFill = existRememberedCredentialUseCase.execute()
+    }
+    
+    func loadRememberCredential() {
+        CustomLog.debug(category: .VM, "\(#function)")
+        do {
+            let credential = try getRememberedCredentialUseCase.execute()
+            self.email = credential.email
+            self.password = credential.password
+        } catch  {
+            showError(from: error)
+        }
+    }
+    
+    private func clear() {
+        self.email = ""
+        self.password = ""
+        self.errorMessage = ""
+        self.showError = false
+        self.showProgressView = false
+    }
+    
+    private func showError(from error: Error) {
+        CustomLog.error(category: .VM, "\(error.localizedDescription)")
+        Utils.showError(alertMessage: &errorMessage, showAlert: &showError, from: error)
+    }
+    
 }
-
-

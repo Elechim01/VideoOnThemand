@@ -19,10 +19,6 @@ class GetCurrentUserUseCase {
     }
     
     func execute(userId: String) async throws -> Utente {
-        let credential =  try credentialRepository.readCredential()
-        
-        return try await  authRepository.getCurentUser(userId: userId,
-                                                       email: credential.email,
-                                                       password: credential.password)
+        return try await  authRepository.getCurentUser(userId: userId)
     }
 }

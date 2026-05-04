@@ -56,7 +56,7 @@ struct ChronologyView: View {
                         .transition(.move(edge: .trailing).combined(with: .opacity))
                 } else {
                     VStack {
-                        Text("Seleziona un film 🎬")
+                        Text("CHRONOLOGY.TITLE".localized())
                             .foregroundStyle(.secondary)
                             .font(.title2)
                             .padding()
@@ -75,9 +75,7 @@ struct ChronologyView: View {
                 chronologyViewModel.chronologyList = Mock.mockChronology
                 
             } else {
-                Task {
-                    await chronologyViewModel.loadChronology()
-                }
+                self.chronologyViewModel.start()
             }
         }
     }
