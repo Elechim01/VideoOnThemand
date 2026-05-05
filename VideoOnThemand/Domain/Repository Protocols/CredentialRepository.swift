@@ -12,7 +12,7 @@ import ElechimCore
 final class CredentialRepository: CredentialRepositoryProtocol {
     
     func readCredential() throws -> (email: String, password: String) {
-        let credential = AuthKeyChain.shared.redCredential()
+        let credential = AuthKeyChain.shared.readCredential()
         guard let email = credential.email,
               let password = credential.password else {
             throw CustomError.noCredential
