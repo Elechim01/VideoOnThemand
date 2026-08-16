@@ -8,6 +8,7 @@
 import UIKit
 import SwiftUI
 import ElechimCore
+import FirebaseCrashlytics
 
 @MainActor
 class LoginViewModel: ObservableObject{
@@ -80,6 +81,7 @@ class LoginViewModel: ObservableObject{
             }
             showProgressView = true
             let idUser = try await loginUseCase.execute(email: email, password: password)
+            Crashlytics.crashlytics().setUserID(idUser)
             self.idUser = idUser
             showProgressView = false
             return true
@@ -93,6 +95,7 @@ class LoginViewModel: ObservableObject{
         CustomLog.debug(category: .VM, "\(#function)")
         do {
             try restoreSessionUseCase.execute()
+            Crashlytics.crashlytics().setUserID(self.idUser)
             return true
         } catch  {
             return false
@@ -103,6 +106,7 @@ class LoginViewModel: ObservableObject{
         do {
             try  logoutUseCase.execute()
             self.idUser = ""
+            Crashlytics.crashlytics().setUserID(self.idUser)
             self.clear()
             return true
         } catch {

@@ -15,6 +15,6 @@ class RestoreSessionUseCase {
     }
     
     func execute() throws {
-        let _ = try repository.readCredential()
+        let currentUser = try repository.readCredential()
     }
 }

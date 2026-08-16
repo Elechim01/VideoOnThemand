@@ -60,6 +60,7 @@
 		C4CC5D142E5DC66800C4B007 /* PageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CC5D132E5DC66800C4B007 /* PageManager.swift */; };
 		C4E4BBBC2F142F5D00C18E02 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4C7A78E28A2A08D001CB803 /* Assets.xcassets */; };
 		C4E532652E5CCE1000AEADBB /* ChronologyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E532632E5CCE1000AEADBB /* ChronologyView.swift */; };
+		C4EC620B3031FD5300E1A12D /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = C4EC620A3031FD5300E1A12D /* FirebaseCrashlytics */; };
 		C4FD388F2FA23E6200DA3F3C /* GetRememberedCredentialsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FD388E2FA23E6200DA3F3C /* GetRememberedCredentialsUseCase.swift */; };
 		C4FD38912FA2413D00DA3F3C /* DeleteRememberedCredentialsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FD38902FA2413D00DA3F3C /* DeleteRememberedCredentialsUseCase.swift */; };
 		C4FD38932FA242CB00DA3F3C /* ExistRememberedCredentialUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FD38922FA242CB00DA3F3C /* ExistRememberedCredentialUseCase.swift */; };
@@ -155,6 +156,7 @@
 				C45934482F7AAED6002661E6 /* Services in Frameworks */,
 				C45934642F7BD0A7002661E6 /* FirebaseAuth in Frameworks */,
 				C45934452F7AAE07002661E6 /* ElechimCore in Frameworks */,
+				C4EC620B3031FD5300E1A12D /* FirebaseCrashlytics in Frameworks */,
 				C45934612F7BD097002661E6 /* FirebaseAnalytics in Frameworks */,
 				C4AB2F002EB79AC200DAE7BF /* CachedAsyncImage in Frameworks */,
 			);
@@ -532,6 +534,7 @@
 				C4C7A78328A2A08B001CB803 /* Sources */,
 				C4C7A78428A2A08B001CB803 /* Frameworks */,
 				C4C7A78528A2A08B001CB803 /* Resources */,
+				C4EC620C3031FDDD00E1A12D /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -547,6 +550,7 @@
 				C45934472F7AAED6002661E6 /* Services */,
 				C45934602F7BD097002661E6 /* FirebaseAnalytics */,
 				C45934632F7BD0A7002661E6 /* FirebaseAuth */,
+				C4EC620A3031FD5300E1A12D /* FirebaseCrashlytics */,
 			);
 			productName = VideoOnThemand;
 			productReference = C4C7A78728A2A08B001CB803 /* VideoOnThemand.app */;
@@ -618,6 +622,31 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		C4EC620C3031FDDD00E1A12D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}",
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${PRODUCT_NAME}",
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Info.plist",
+				"$(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/GoogleService-Info.plist",
+				"$(TARGET_BUILD_DIR)/$(EXECUTABLE_PATH)",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${BUILD_DIR%/Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C4BCC8BE2F7E6CB700AB4144 /* Sources */ = {
@@ -879,7 +908,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = VideoOnThemand/VideoOnThemand.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "\"VideoOnThemand/Preview Content\"";
 				DEVELOPMENT_TEAM = G7DSPSWXXC;
 				ENABLE_PREVIEWS = YES;
@@ -894,7 +923,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.5;
+				MARKETING_VERSION = 2.5.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.MicheleManniello.VideoOnThemandDebug;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -911,7 +940,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = VideoOnThemand/VideoOnThemand.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "\"VideoOnThemand/Preview Content\"";
 				DEVELOPMENT_TEAM = G7DSPSWXXC;
 				ENABLE_PREVIEWS = YES;
@@ -926,7 +955,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.5;
+				MARKETING_VERSION = 2.5.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.MicheleManniello.VideoOnThemand;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1016,6 +1045,11 @@
 		C4AB2EFF2EB79AC200DAE7BF /* CachedAsyncImage */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = CachedAsyncImage;
+		};
+		C4EC620A3031FD5300E1A12D /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C459345F2F7BD097002661E6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
