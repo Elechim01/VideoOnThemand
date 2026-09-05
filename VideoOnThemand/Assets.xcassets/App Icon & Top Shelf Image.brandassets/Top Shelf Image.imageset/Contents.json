@@ -1,12 +1,12 @@
 {
   "images" : [
     {
-      "filename" : "Rectangle TSI.png",
+      "filename" : "Top_Shelf_Static.png",
       "idiom" : "tv",
       "scale" : "1x"
     },
     {
-      "filename" : "Rectangle TSI2x.png",
+      "filename" : "Top_Shelf_Dynamic.png",
       "idiom" : "tv",
       "scale" : "2x"
     }
