@@ -9,7 +9,7 @@ import Foundation
 import Services
 import ElechimCore
 
-class GetCurrentUserUseCase {
+final class GetCurrentUserUseCase: Sendable {
     private let authRepository: AuthRepositoryProtocol
     private let credentialRepository: CredentialRepositoryProtocol
     

@@ -8,7 +8,7 @@
 import Foundation
 import Services
 
-class FetchMovieUseCase {
+final class FetchMovieUseCase: Sendable {
     private let movieRepository: MovieRepositoryProtocol
     
     init(movieRepository: MovieRepositoryProtocol) {

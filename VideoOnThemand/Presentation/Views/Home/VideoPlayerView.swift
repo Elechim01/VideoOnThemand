@@ -34,14 +34,13 @@ struct VideoPlayerView: View {
                 
                 // Riproduci quando pronto
                 playerManager.playWhenReady()
-                
-                
-                NotificationCenter.default.addObserver(
-                    forName: AVPlayerItem.didPlayToEndTimeNotification,
-                    object: playerItem, queue: .main) { _ in
-                        dismiss()
-                    }
             }
+            .onReceive(NotificationCenter.default.publisher(for: .AVPlayerItemDidPlayToEndTime), perform: { notification in
+                if let currentItem = notification.object as? AVPlayerItem,
+                   currentItem == playerManager.player.currentItem {
+                    dismiss()
+                }
+            })
             .onDisappear {
                 playerManager.stop()
             }

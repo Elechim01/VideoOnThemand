@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol CredentialRepositoryProtocol {
+protocol CredentialRepositoryProtocol: Sendable {
     func readCredential() throws -> (email: String, password: String) 
     func saveCredential(email: String, password: String)  throws
     func readRememberedCredential() throws -> (email: String, password: String)

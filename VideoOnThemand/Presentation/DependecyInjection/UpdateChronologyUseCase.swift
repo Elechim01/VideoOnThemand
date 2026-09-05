@@ -8,7 +8,7 @@
 import Foundation
 import Services
 
-class UpdateChronologyUseCase {
+final class UpdateChronologyUseCase: Sendable{
     private let chronologyRepository: ChronologyRepositoryProtocol
     
     init(chronologyRepository: ChronologyRepositoryProtocol) {
