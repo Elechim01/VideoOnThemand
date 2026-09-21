@@ -7,7 +7,7 @@
 
 import Foundation
 
-class RestoreSessionUseCase {
+final class RestoreSessionUseCase: Sendable {
     private let repository: CredentialRepositoryProtocol
     
     init(repository: CredentialRepositoryProtocol) {
@@ -15,6 +15,6 @@ class RestoreSessionUseCase {
     }
     
     func execute() throws {
-        let currentUser = try repository.readCredential()
+     let _ = try repository.readCredential()
     }
 }

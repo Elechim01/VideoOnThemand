@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class GetRememberedCredentialsUseCase {
+final class GetRememberedCredentialsUseCase: Sendable {
     private let repository: CredentialRepositoryProtocol
     
     init(repository: CredentialRepositoryProtocol) {

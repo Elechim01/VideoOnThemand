@@ -1,12 +1,12 @@
 {
   "images" : [
     {
-      "filename" : "Rectangle 2.png",
+      "filename" : "App_Icon_Layer_Small.png",
       "idiom" : "tv",
       "scale" : "1x"
     },
     {
-      "filename" : "Rectangle 1.png",
+      "filename" : "Screenshot_1080p 1.png",
       "idiom" : "tv",
       "scale" : "2x"
     }
