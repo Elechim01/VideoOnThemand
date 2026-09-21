@@ -8,7 +8,7 @@
 import Foundation
 import Services
 
-protocol AuthRepositoryProtocol {
+protocol AuthRepositoryProtocol: Sendable {
     func getCurentUser(userId: String) async throws -> Utente
     func signIn(email: String, password: String) async throws ->  String
     func logOut() throws

@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class DeleteRememberedCredentialsUseCase {
+final class DeleteRememberedCredentialsUseCase: Sendable {
     private let repository: CredentialRepositoryProtocol
     
     init(repository: CredentialRepositoryProtocol) {

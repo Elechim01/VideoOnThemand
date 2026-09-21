@@ -43,13 +43,11 @@ struct ChronologyView: View {
                                         withAnimation { selectedFilm = item }
                                     }
                                 }
-                            
                         }
                         
                     }
                     .padding()
                 }
-                
                 // Pannello di destra con i dettagli
                 if let film = selectedFilm {
                     FilmDetailView(chronology: film)
@@ -73,7 +71,6 @@ struct ChronologyView: View {
         .onAppear {
             if isPreview {
                 chronologyViewModel.chronologyList = Mock.mockChronology
-                
             } else {
                 self.chronologyViewModel.start()
             }
