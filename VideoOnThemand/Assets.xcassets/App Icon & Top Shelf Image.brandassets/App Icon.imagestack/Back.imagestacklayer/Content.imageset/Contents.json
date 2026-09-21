@@ -1,12 +1,12 @@
 {
   "images" : [
     {
-      "filename" : "App_Icon_Layer_Small.png",
+      "filename" : "App_Icon_Small.png",
       "idiom" : "tv",
       "scale" : "1x"
     },
     {
-      "filename" : "Screenshot_1080p 1.png",
+      "filename" : "App_Icon_Small_@2xback.png",
       "idiom" : "tv",
       "scale" : "2x"
     }
